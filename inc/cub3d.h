@@ -6,20 +6,22 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/11 23:15:52 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/11 23:42:59 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../minilibx-linux/mlx.h"
-# include "../minilibx-linux/mlx_int.h"
+# include "../src/minilibx-linux/mlx.h"
+# include "../src/minilibx-linux/mlx_int.h"
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "../libft/libft.h"
+# include "../src/libft/libft.h"
+# include "parsing.h"
+# include <errno.h>
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -27,7 +29,8 @@
 # define TEX_HEIGHT 64
 # define BITS_PER_PIXEL 32
 
-// Wall face constants (add these)
+// Wall face constants
+
 # define NORTH 0
 # define SOUTH 1
 # define EAST 2
@@ -50,8 +53,7 @@ typedef struct s_ray
 	int		step_x;
 	int		step_y;
 	int		side;
-	
-	double	wall_dist;  // Add this for storing distance
+	double	wall_dist;
 }	t_ray;
 
 typedef struct s_map
@@ -112,7 +114,7 @@ typedef struct s_graphics
 	void	*win_ptr;
 	void	*img_ptr;
 	char	*img_data;
-	int		line_length;  // Fixed spelling
+	int		line_length;
 	int		endian;
 }	t_graphics;
 
@@ -123,16 +125,5 @@ typedef struct s_cub3d
 	t_camera	cam;
 	t_map		map;
 }	t_cub3d;
-
-// Function prototypes (add these)
-t_ray	init_ray(t_camera *cam, double camera_x);
-void	init_dda(t_ray *ray);
-void	perform_dda_steps(t_ray *ray, t_map *map);
-double	calculate_wall_distance(t_ray *ray);
-double	dda(t_ray *ray, t_map *map);
-t_ray	cast_ray(t_camera *cam, t_map *map, int screen_x);
-void	*determine_wall_texture(t_ray *ray, t_textures *txt);
-int		calculate_texture_coordinate(t_ray *ray);
-void	render_frame(t_cub3d *cub);
 
 #endif
