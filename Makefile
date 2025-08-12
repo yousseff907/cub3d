@@ -14,6 +14,7 @@ MOVEMENT_SRC	= $(SRC_DIR)/movement/movement.c \
 			  $(SRC_DIR)/movement/keyhook.c
 RENDERING_SRC	= $(SRC_DIR)/rendering/dda.c \
 			  $(SRC_DIR)/rendering/draw.c \
+			  $(SRC_DIR)/rendering/texture.c \
 			  $(SRC_DIR)/rendering/render.c
 
 SRCS		= $(MAIN_SRC) $(MOVEMENT_SRC) $(RENDERING_SRC)

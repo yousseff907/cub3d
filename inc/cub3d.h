@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/12 17:01:53 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/12 17:31:27 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@
 # define A_KEY 97
 # define S_KEY 115
 # define D_KEY 100
-# define LEFT_KEY 65361
-# define RIGHT_KEY 65363
+# define LEFT_KEY 65363
+# define RIGHT_KEY 65361
 
 typedef struct s_ray
 {
@@ -150,5 +150,7 @@ void	move_right(t_cub3d *cub);
 void	rotate_left(t_cub3d *cub);
 void	rotate_right(t_cub3d *cub);
 void	render_frame(t_cub3d *cub);
-
+int		get_texture_pixel(char *tex_data, int tex_x, int tex_y);
+int		calculate_texture_x(t_ray *ray);
+void	draw_wall(t_graphics *gfx, int x, t_ray *ray, char *tex_data, int tex_x);
 #endif

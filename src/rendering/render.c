@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 18:58:53 by odana             #+#    #+#             */
-/*   Updated: 2025/08/12 17:11:27 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/12 17:31:55 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	draw_wall_column(t_graphics *gfx, int x, t_ray *ray, t_textures *txt)
 	int	line_height;
 	int	draw_start;
 	int	draw_end;
-	int	wall_color;
 
 	line_height = (int)(HEIGHT / ray->wall_dist);
 	draw_start = (HEIGHT - line_height) / 2;
@@ -77,9 +76,8 @@ void	draw_wall_column(t_graphics *gfx, int x, t_ray *ray, t_textures *txt)
 		draw_start = 0;
 	if (draw_end >= HEIGHT)
 		draw_end = HEIGHT - 1;
-	wall_color = 0x000000;
 	draw_ceiling(gfx, x, draw_start, txt->ceiling_color);
-	draw_wall_segment(gfx, x, draw_start, draw_end, wall_color);
+	draw_wall(gfx, x, ray, wall_tex(ray, txt), tex_coord(ray));
 	draw_floor(gfx, x, draw_end, txt->floor_color);
 }
 
