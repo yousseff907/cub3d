@@ -6,11 +6,11 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:21:19 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/12 19:43:41 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/13 01:40:52 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../inc/cub3d.h"
 
 int	is_cub_file(char *file_name)
 {
@@ -70,7 +70,7 @@ int	rows_count(char *file_name)
 	row[1] total number of rows
 									*/
 
-char	**alloc_map(char *file_name)
+char	**alloc_file(char *file_name)
 {
 	char	**map;
 	char	*line;
@@ -95,7 +95,7 @@ char	**alloc_map(char *file_name)
 	return (map);
 }
 
-char	**store_map(char *file_name)
+char	**store_file(char *file_name)
 {
 	int		fd;
 	char	*line;
@@ -104,7 +104,7 @@ char	**store_map(char *file_name)
 
 	row[1] = rows_count(file_name);
 	row[0] = 0;
-	map	= alloc_map(file_name);
+	map	= alloc_file(file_name);
 	fd = open(file_name, O_RDONLY);
 	while (row[0] < row[1])
 	{
@@ -120,4 +120,13 @@ char	**store_map(char *file_name)
 	map[row[0]] = NULL;
 	close(fd);
 	return (map);
+}
+
+void	file_content_identification(int argc, char **argv)
+{
+	char	**parsed_file;
+
+	validate_input(argc, argv);
+	parsed_file = store_file(argv[1]);
+	indentify_type(argv[1]);
 }
