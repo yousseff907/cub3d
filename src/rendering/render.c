@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 18:58:53 by odana             #+#    #+#             */
-/*   Updated: 2025/08/12 17:31:55 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/12 20:57:19 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,6 @@ t_ray	cast_ray(t_camera *cam, t_map *map, int screen_x)
 	return (ray);
 }
 
-void	*wall_tex(t_ray *ray, t_textures *tex)
-{
-	if (ray->side == 0)
-	{
-		if (ray->dir_x > 0)
-			return (tex->east);
-		else
-			return (tex->west);
-	}
-	else
-	{
-		if (ray->dir_y > 0)
-			return (tex->south);
-		else
-			return (tex->north);
-	}
-}
 
 int	tex_coord(t_ray *ray)
 {
@@ -63,23 +46,6 @@ int	tex_coord(t_ray *ray)
 	return (tex_x);
 }
 
-void	draw_wall_column(t_graphics *gfx, int x, t_ray *ray, t_textures *txt)
-{
-	int	line_height;
-	int	draw_start;
-	int	draw_end;
-
-	line_height = (int)(HEIGHT / ray->wall_dist);
-	draw_start = (HEIGHT - line_height) / 2;
-	draw_end = (HEIGHT + line_height) / 2;
-	if (draw_start < 0)
-		draw_start = 0;
-	if (draw_end >= HEIGHT)
-		draw_end = HEIGHT - 1;
-	draw_ceiling(gfx, x, draw_start, txt->ceiling_color);
-	draw_wall(gfx, x, ray, wall_tex(ray, txt), tex_coord(ray));
-	draw_floor(gfx, x, draw_end, txt->floor_color);
-}
 
 void	render_frame(t_cub3d *cub)
 {

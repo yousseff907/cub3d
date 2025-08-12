@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/12 17:31:27 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/12 20:59:41 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,10 +135,18 @@ typedef struct s_cub3d
 	t_map		map;
 }	t_cub3d;
 
+typedef struct s_wall_draw
+{
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	int		screen_x;
+	double	step;
+}	t_wall_draw;
+
 double	dda(t_ray *ray, t_map *map);
 
 void	draw_ceiling(t_graphics *gfx, int x, int end, int color);
-void	draw_wall_segment(t_graphics *gfx, int x, int start, int end, int color);
 void	draw_floor(t_graphics *gfx, int x, int start, int color);
 void	put_pixel(t_graphics *gfx, int x, int y, int color);
 
@@ -150,7 +158,9 @@ void	move_right(t_cub3d *cub);
 void	rotate_left(t_cub3d *cub);
 void	rotate_right(t_cub3d *cub);
 void	render_frame(t_cub3d *cub);
-int		get_texture_pixel(char *tex_data, int tex_x, int tex_y);
-int		calculate_texture_x(t_ray *ray);
-void	draw_wall(t_graphics *gfx, int x, t_ray *ray, char *tex_data, int tex_x);
+int		get_pixel_texture(char *tex_data, int tex_x, int tex_y);
+int		calculate_texture(t_ray *ray);
+char	*get_wall_data(t_ray *ray, t_textures *txt);
+
+
 #endif
