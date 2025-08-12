@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/11 23:42:59 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/12 17:01:53 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../src/minilibx-linux/mlx.h"
-# include "../src/minilibx-linux/mlx_int.h"
+# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include "../src/libft/libft.h"
-# include "parsing.h"
+# include "../libft/libft.h"
 # include <errno.h>
+
+# include "parsing.h"
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -35,6 +36,14 @@
 # define SOUTH 1
 # define EAST 2
 # define WEST 3
+
+# define ESC_KEY 65307
+# define W_KEY 119
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
+# define LEFT_KEY 65361
+# define RIGHT_KEY 65363
 
 typedef struct s_ray
 {
@@ -125,5 +134,21 @@ typedef struct s_cub3d
 	t_camera	cam;
 	t_map		map;
 }	t_cub3d;
+
+double	dda(t_ray *ray, t_map *map);
+
+void	draw_ceiling(t_graphics *gfx, int x, int end, int color);
+void	draw_wall_segment(t_graphics *gfx, int x, int start, int end, int color);
+void	draw_floor(t_graphics *gfx, int x, int start, int color);
+void	put_pixel(t_graphics *gfx, int x, int y, int color);
+
+int		key_hook(int keycode, t_cub3d *cub);
+void	move_forward(t_cub3d *cub);
+void	move_backward(t_cub3d *cub);
+void	move_left(t_cub3d *cub);
+void	move_right(t_cub3d *cub);
+void	rotate_left(t_cub3d *cub);
+void	rotate_right(t_cub3d *cub);
+void	render_frame(t_cub3d *cub);
 
 #endif
