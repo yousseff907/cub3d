@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/14 20:06:12 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/14 23:30:34 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,24 +98,28 @@ typedef struct s_textures
 	char	*north_path;
 	int		north_width;
 	int		north_height;
-
+	int		north_length;
+	
 	void	*south;
 	char	*south_data;
 	char	*south_path;
 	int		south_width;
 	int		south_height;
-
+	int		south_length;
+	
 	void	*east;
 	char	*east_data;
 	char	*east_path;
 	int		east_width;
 	int		east_height;
-
+	int		east_length;
+	
 	void	*west;
 	char	*west_data;
 	char	*west_path;
 	int		west_width;
 	int		west_height;
+	int		west_length;
 
 	int		floor_color;
 	int		ceiling_color;
@@ -131,12 +135,23 @@ typedef struct s_graphics
 	int		endian;
 }	t_graphics;
 
+typedef struct s_keys
+{
+	int w_pressed;
+	int s_pressed;
+	int a_pressed;
+	int d_pressed;
+	int left_pressed;
+	int right_pressed;
+} t_keys;
+
 typedef struct s_cub3d
 {
 	t_graphics	gfx;
 	t_textures	txt;
 	t_camera	cam;
 	t_map		map;
+	t_keys		keys;
 }	t_cub3d;
 
 typedef struct s_wall_draw
@@ -148,6 +163,7 @@ typedef struct s_wall_draw
 	double	step;
 }	t_wall_draw;
 
+
 // initi t_cub3d
 
 void	init_cub3d(t_cub3d *cub); // odana please add anything you need to add !!!!!
@@ -158,7 +174,10 @@ void	draw_ceiling(t_graphics *gfx, int x, int end, int color);
 void	draw_floor(t_graphics *gfx, int x, int start, int color);
 void	put_pixel(t_graphics *gfx, int x, int y, int color);
 
-int		key_hook(int keycode, t_cub3d *cub);
+int 	key_release(int keycode, t_cub3d *cub);
+int 	key_press(int keycode, t_cub3d *cub);
+int 	game_loop(t_cub3d *cub);
+
 void	move_forward(t_cub3d *cub);
 void	move_backward(t_cub3d *cub);
 void	move_left(t_cub3d *cub);
@@ -166,9 +185,11 @@ void	move_right(t_cub3d *cub);
 void	rotate_left(t_cub3d *cub);
 void	rotate_right(t_cub3d *cub);
 void	render_frame(t_cub3d *cub);
-int		get_pixel_texture(char *tex_data, int tex_x, int tex_y);
+int		get_pixel_texture(char *tex_data, int tex_x, int tex_y, int line_length);
 int		calculate_texture(t_ray *ray);
 char	*get_wall_data(t_ray *ray, t_textures *txt);
+int 	close_window(t_cub3d *cub);
+void 	cleanup_cub3d(t_cub3d *cub);
 
 
 #endif

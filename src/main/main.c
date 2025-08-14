@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:20:04 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/14 19:09:27 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/14 23:57:46 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int main(int argc, char **argv)
 
 	cub = malloc(sizeof(t_cub3d));
 	if (!cub)
-	{
-		ft_putendl_fd("Error: Memory allocation failed", 2);
-		exit(1);
-	}
+		cleanup_exit(cub, "Error: Memory allocation failed", 1);
 	init_cub3d(cub);
 	file_content_identification(argc, argv, cub);
 

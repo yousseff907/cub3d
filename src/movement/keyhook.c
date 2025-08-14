@@ -6,28 +6,71 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:54:55 by odana             #+#    #+#             */
-/*   Updated: 2025/08/12 16:55:08 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/14 22:59:23 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int	key_hook(int keycode, t_cub3d *cub)
+int key_press(int keycode, t_cub3d *cub)
 {
-	if (keycode == ESC_KEY)
-		exit(0);
-	if (keycode == W_KEY)
-		move_forward(cub);
-	if (keycode == S_KEY)
-		move_backward(cub);
-	if (keycode == A_KEY)
-		move_left(cub);
-	if (keycode == D_KEY)
-		move_right(cub);
-	if (keycode == LEFT_KEY)
-		rotate_left(cub);
-	if (keycode == RIGHT_KEY)
-		rotate_right(cub);
-	render_frame(cub);
-	return (0);
+    if (keycode == ESC_KEY)
+        exit(0);
+    if (keycode == W_KEY)
+        cub->keys.w_pressed = 1;
+    if (keycode == S_KEY)
+        cub->keys.s_pressed = 1;
+    if (keycode == A_KEY)
+        cub->keys.a_pressed = 1;
+    if (keycode == D_KEY)
+        cub->keys.d_pressed = 1;
+    if (keycode == LEFT_KEY)
+        cub->keys.left_pressed = 1;
+    if (keycode == RIGHT_KEY)
+        cub->keys.right_pressed = 1;
+    return (0);
+}
+
+int key_release(int keycode, t_cub3d *cub)
+{
+    if (keycode == W_KEY)
+        cub->keys.w_pressed = 0;
+    if (keycode == S_KEY)
+        cub->keys.s_pressed = 0;
+    if (keycode == A_KEY)
+        cub->keys.a_pressed = 0;
+    if (keycode == D_KEY)
+        cub->keys.d_pressed = 0;
+    if (keycode == LEFT_KEY)
+        cub->keys.left_pressed = 0;
+    if (keycode == RIGHT_KEY)
+        cub->keys.right_pressed = 0;
+    return (0);
+}
+
+int game_loop(t_cub3d *cub)
+{
+    if (cub->keys.w_pressed)
+        move_forward(cub);
+    if (cub->keys.s_pressed)
+        move_backward(cub);
+    if (cub->keys.a_pressed)
+        move_left(cub);
+    if (cub->keys.d_pressed)
+        move_right(cub);
+    if (cub->keys.left_pressed)
+        rotate_left(cub);
+    if (cub->keys.right_pressed)
+        rotate_right(cub);
+    if (cub->keys.w_pressed || cub->keys.s_pressed || cub->keys.a_pressed || 
+        cub->keys.d_pressed || cub->keys.left_pressed || cub->keys.right_pressed)
+        render_frame(cub);
+    return (0);
+}
+
+int close_window(t_cub3d *cub)
+{
+    cleanup_cub3d(cub);
+    exit(1);
+    return (0);
 }

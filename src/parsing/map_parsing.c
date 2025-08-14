@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:20:29 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/14 19:37:37 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/14 23:54:27 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@ void	store_map(char **parsed_file, int start_index, t_cub3d *cub)
 	cub->map.grid = malloc((map_lines + 1) * sizeof(char *));
 	if (!cub->map.grid)
 	{
-		ft_putendl_fd("Error: Memory allocation failed", 2);
-		return (free_split(parsed_file), exit(1));
+		free_split(parsed_file);
+		cleanup_exit(cub, "Error: Memory allocation failed", 1);
 	}
 	while (start_index < size_of_arr(parsed_file))
 	{
 		cub->map.grid[i] = ft_strdup(parsed_file[start_index]);
 		if (!cub->map.grid[i])
 		{
-			ft_putendl_fd("Error: Memory allocation failed", 2);
-			return (free_split(parsed_file), cleanup_cub3d(cub), exit(1));
+			free_split(parsed_file);
+			cleanup_exit(cub, "Error: Memory allocation failed", 1);
 		}
 		start_index++;
 		i++;

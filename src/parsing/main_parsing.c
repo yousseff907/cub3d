@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:58:16 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/14 19:06:02 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/14 23:57:38 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	identify_type(char **parsed_file, t_cub3d *cub)
 			break ;
 		}
 		else
-			return (ft_putendl_fd("Error: Invalid line in .cub file", 2),
-				free_split(parsed_file), exit(1));
+			free_split(parsed_file);
+			cleanup_exit(cub, "Error: Invalid line in .cub file", 1);
 	}
 }
 
