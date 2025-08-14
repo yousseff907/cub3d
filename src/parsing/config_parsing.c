@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:59:17 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/14 20:11:25 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/14 20:37:21 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,13 @@ static char	*trim_whitespace(char *str)
 	start = 0;
 	while (str[start] && is_space(str[start]))
 		start++;
-	
 	end = ft_strlen(str) - 1;
 	while (end >= start && is_space(str[end]))
 		end--;
-	
 	len = end - start + 1;
 	result = malloc(len + 1);
 	if (!result)
 		return (NULL);
-	
 	ft_strlcpy(result, str + start, len + 1);
 	return (result);
 }
