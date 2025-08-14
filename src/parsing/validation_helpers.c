@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:21:19 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/13 01:40:52 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/13 20:16:44 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,11 +122,64 @@ char	**store_file(char *file_name)
 	return (map);
 }
 
+int	size_of_arr(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+		i++;
+	return (i);
+}
+
+int	is_empty_line(char	*line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+	{
+		if (line[i] != ' ' && line[i] != '\t' && line[i] != '\n'
+			&& line[i] != '\r' && line[i] != '\v' && line[i] != '\f')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+void	identify_type(char **parsed_file)
+{
+	int	i;
+
+	i = 0;
+	while(i < size_of_arr(parsed_file))
+	{
+		if (is_empty_line(parsed_file[i]))
+		{
+			i++;
+			continue ;
+		}
+		else if (is_config_line(parsed_file[i]))
+		{
+			store_config_line(parsed_file[i]);
+			i++;
+		}
+		else if (is_map_line(parsed_file[i]))
+		{
+			store_map(parsed_file, i);
+			break ;
+		}
+		else
+			return (ft_putendl_fd("Error: Invalid line in .cub file", 2),
+				exit(1));
+	}
+}
+
 void	file_content_identification(int argc, char **argv)
 {
 	char	**parsed_file;
 
 	validate_input(argc, argv);
 	parsed_file = store_file(argv[1]);
-	indentify_type(argv[1]);
+	indentify_type(parsed_file);
 }
