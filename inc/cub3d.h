@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/12 20:59:41 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/14 20:06:12 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,21 +95,25 @@ typedef struct s_textures
 {
 	void	*north;
 	char	*north_data;
+	char	*north_path;
 	int		north_width;
 	int		north_height;
 
 	void	*south;
 	char	*south_data;
+	char	*south_path;
 	int		south_width;
 	int		south_height;
 
 	void	*east;
 	char	*east_data;
+	char	*east_path;
 	int		east_width;
 	int		east_height;
 
 	void	*west;
 	char	*west_data;
+	char	*west_path;
 	int		west_width;
 	int		west_height;
 
@@ -143,6 +147,10 @@ typedef struct s_wall_draw
 	int		screen_x;
 	double	step;
 }	t_wall_draw;
+
+// initi t_cub3d
+
+void	init_cub3d(t_cub3d *cub); // odana please add anything you need to add !!!!!
 
 double	dda(t_ray *ray, t_map *map);
 

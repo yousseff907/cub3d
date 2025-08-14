@@ -1,34 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/11 23:20:04 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/14 19:09:27 by yitani           ###   ########.fr       */
+/*   Created: 2025/08/14 18:53:09 by yitani            #+#    #+#             */
+/*   Updated: 2025/08/14 18:54:42 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-int main(int argc, char **argv)
+void	free_split(char **args)
 {
-	t_cub3d *cub;
+	int	i;
 
-	cub = malloc(sizeof(t_cub3d));
-	if (!cub)
-	{
-		ft_putendl_fd("Error: Memory allocation failed", 2);
-		exit(1);
-	}
-	init_cub3d(cub);
-	file_content_identification(argc, argv, cub);
+	if (!args)
+		return ;
+	i = 0;
+	while (args[i])
+		free(args[i++]);
+	free(args);
+}
 
-	// program logic
-	// initialize MLX
-	// game loop
+int	size_of_arr(char **args)
+{
+	int	i;
 
-	cleanup_cub3d(cub);
+	i = 0;
+	while (args[i])
+		i++;
+	return (i);
+}
+
+int	is_space(char c)
+{
+	if (c == ' ' || c == '\t' || c == '\n'
+		|| c == '\r' || c == '\v' || c == '\f')
+		return (1);
 	return (0);
 }
