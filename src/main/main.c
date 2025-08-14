@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:20:04 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/15 00:22:04 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 00:31:39 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ static void	setup_player_position(t_cub3d *cub)
 	int	x;
 	int	y;
 
+	printf("DEBUG: Setting up player position...\n");
 	y = 0;
 	while (y < cub->map.height)
 	{
@@ -30,16 +31,19 @@ static void	setup_player_position(t_cub3d *cub)
 				cub->cam.pos_y = y + 0.5;
 				cub->map.player_spawn = cub->map.grid[y][x];
 				cub->map.grid[y][x] = '0';  // Replace player with empty space
+				printf("DEBUG: Player found at (%d, %d), spawn: %c\n", x, y, cub->map.player_spawn);
 				return ;
 			}
 			x++;
 		}
 		y++;
 	}
+	printf("DEBUG: No player spawn position found!\n");
 }
 
 static void	init_player_direction(t_cub3d *cub)
 {
+	printf("DEBUG: Initializing player direction for spawn: %c\n", cub->map.player_spawn);
 	if (cub->map.player_spawn == 'N')
 	{
 		cub->cam.dir_x = 0.0;
@@ -68,35 +72,63 @@ static void	init_player_direction(t_cub3d *cub)
 		cub->cam.plane_x = 0.0;
 		cub->cam.plane_y = -0.66;
 	}
+	printf("DEBUG: Direction set to (%.2f, %.2f), plane (%.2f, %.2f)\n", 
+		cub->cam.dir_x, cub->cam.dir_y, cub->cam.plane_x, cub->cam.plane_y);
 }
 
 static void	validate_configuration(t_cub3d *cub)
 {
+	printf("DEBUG: Validating configuration...\n");
+	
 	if (!cub->txt.north_path || !cub->txt.south_path ||
 		!cub->txt.east_path || !cub->txt.west_path)
+	{
+		printf("DEBUG: Missing texture paths:\n");
+		printf("  North: %s\n", cub->txt.north_path ? cub->txt.north_path : "NULL");
+		printf("  South: %s\n", cub->txt.south_path ? cub->txt.south_path : "NULL");
+		printf("  East: %s\n", cub->txt.east_path ? cub->txt.east_path : "NULL");
+		printf("  West: %s\n", cub->txt.west_path ? cub->txt.west_path : "NULL");
 		cleanup_exit(cub, "Error: Missing texture paths", 1);
+	}
 	
 	if (!cub->map.grid)
+	{
+		printf("DEBUG: No map found!\n");
 		cleanup_exit(cub, "Error: No map found", 1);
+	}
 	
 	// Validate that player spawn position was found and set
 	if (cub->map.player_spawn == '\0')
+	{
+		printf("DEBUG: No player spawn position found!\n");
 		cleanup_exit(cub, "Error: No player spawn position found", 1);
+	}
+	
+	printf("DEBUG: Configuration valid!\n");
 }
 
 int main(int argc, char **argv)
 {
 	t_cub3d *cub;
 
+	printf("DEBUG: Starting cub3D...\n");
+	printf("DEBUG: Arguments: argc=%d\n", argc);
+	if (argc > 1)
+		printf("DEBUG: Map file: %s\n", argv[1]);
+
 	cub = malloc(sizeof(t_cub3d));
 	if (!cub)
 		cleanup_exit(cub, "Error: Memory allocation failed", 1);
 	
+	printf("DEBUG: Memory allocated successfully\n");
+	
 	// Initialize all structures
 	init_cub3d(cub);
+	printf("DEBUG: Structures initialized\n");
 	
 	// Parse the .cub file and validate input
 	file_content_identification(argc, argv, cub);
+	printf("DEBUG: File parsed successfully\n");
 	
 	// Validate that we have all required configuration
 	validate_configuration(cub);
@@ -106,20 +138,27 @@ int main(int argc, char **argv)
 	init_player_direction(cub);
 	
 	// Initialize MLX and create window
+	printf("DEBUG: Creating MLX...\n");
 	create_mlx(cub);
+	printf("DEBUG: MLX created, creating image...\n");
 	create_image(cub);
+	printf("DEBUG: Image created, loading textures...\n");
 	
 	// Load textures
 	load_textures(cub);
+	printf("DEBUG: Textures loaded, rendering first frame...\n");
 	
 	// Render initial frame
 	render_frame(cub);
+	printf("DEBUG: First frame rendered, setting up hooks...\n");
 	
 	// Set up event hooks
 	mlx_hook(cub->gfx.win_ptr, 2, 1L<<0, key_press, cub);      // KeyPress
 	mlx_hook(cub->gfx.win_ptr, 3, 1L<<1, key_release, cub);    // KeyRelease
 	mlx_hook(cub->gfx.win_ptr, 17, 1L<<17, close_window, cub); // DestroyNotify (X button)
 	mlx_loop_hook(cub->gfx.mlx_ptr, game_loop, cub);           // Main game loop
+	
+	printf("DEBUG: Hooks set up, starting MLX loop...\n");
 	
 	// Start the MLX loop
 	mlx_loop(cub->gfx.mlx_ptr);
@@ -128,3 +167,4 @@ int main(int argc, char **argv)
 	cleanup_cub3d(cub);
 	return (0);
 }
+

@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 18:58:53 by odana             #+#    #+#             */
-/*   Updated: 2025/08/15 00:08:03 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 00:31:18 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,11 @@ void	render_frame(t_cub3d *cub)
 	int		x;
 	t_ray	ray;
 
+	if (!cub->gfx.img_ptr)
+	{
+		printf("ERROR: No image buffer allocated!\n");
+		return;
+	}
 	x = 0;
 	while (x < WIDTH)
 	{

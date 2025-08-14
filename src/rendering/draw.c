@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:49:11 by odana             #+#    #+#             */
-/*   Updated: 2025/08/15 00:18:12 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 00:30:16 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	draw_texture_column(t_graphics *gfx, t_wall_draw wall,
 		tex_y = (int)tex_pos & (TEX_HEIGHT - 1);
 		tex_pos += wall.step;
 		color = get_pixel_texture(tex_data, tex_x, tex_y, wall.line_length);
-		put_pixel(gfx, wall.screen_x, y, color);
+		put_pixel(gfx, wall.screen_x, y, color);	
 		y++;
 	}
 }
