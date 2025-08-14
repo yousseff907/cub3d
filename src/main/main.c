@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:20:04 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/15 00:31:39 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 00:56:07 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,31 @@ static void	validate_configuration(t_cub3d *cub)
 {
 	printf("DEBUG: Validating configuration...\n");
 	
-	if (!cub->txt.north_path || !cub->txt.south_path ||
-		!cub->txt.east_path || !cub->txt.west_path)
+	printf("DEBUG: Checking texture paths:\n");
+	printf("  North path: %s\n", cub->txt.north_path ? cub->txt.north_path : "NULL");
+	printf("  South path: %s\n", cub->txt.south_path ? cub->txt.south_path : "NULL");
+	printf("  East path: %s\n", cub->txt.east_path ? cub->txt.east_path : "NULL");
+	printf("  West path: %s\n", cub->txt.west_path ? cub->txt.west_path : "NULL");
+	
+	printf("DEBUG: Checking colors:\n");
+	printf("  Floor color: 0x%06X\n", cub->txt.floor_color);
+	printf("  Ceiling color: 0x%06X\n", cub->txt.ceiling_color);
+	
+	if (!cub->txt.north_path)
 	{
-		printf("DEBUG: Missing texture paths:\n");
-		printf("  North: %s\n", cub->txt.north_path ? cub->txt.north_path : "NULL");
-		printf("  South: %s\n", cub->txt.south_path ? cub->txt.south_path : "NULL");
-		printf("  East: %s\n", cub->txt.east_path ? cub->txt.east_path : "NULL");
-		printf("  West: %s\n", cub->txt.west_path ? cub->txt.west_path : "NULL");
-		cleanup_exit(cub, "Error: Missing texture paths", 1);
+		cleanup_exit(cub, "Error: Missing north texture (NO)", 1);
+	}
+	if (!cub->txt.south_path)
+	{
+		cleanup_exit(cub, "Error: Missing south texture (SO)", 1);
+	}
+	if (!cub->txt.east_path)
+	{
+		cleanup_exit(cub, "Error: Missing east texture (EA)", 1);
+	}
+	if (!cub->txt.west_path)
+	{
+		cleanup_exit(cub, "Error: Missing west texture (WE)", 1);
 	}
 	
 	if (!cub->map.grid)
@@ -104,8 +120,9 @@ static void	validate_configuration(t_cub3d *cub)
 		cleanup_exit(cub, "Error: No player spawn position found", 1);
 	}
 	
-	printf("DEBUG: Configuration valid!\n");
+	printf("DEBUG: Configuration validation completed successfully!\n");
 }
+
 
 int main(int argc, char **argv)
 {
