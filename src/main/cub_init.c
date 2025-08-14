@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 19:40:43 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/14 23:39:09 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 00:14:46 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static void	init_textures(t_cub3d *cub)
 	cub->txt.south_length = 0;
 	cub->txt.east_length = 0;
 	cub->txt.west_length = 0;
-	cub->txt.floor_color = 0;
-	cub->txt.ceiling_color = 0;
+	cub->txt.floor_color = -1;
+	cub->txt.ceiling_color = -1;
 }
 
 static void	init_map_camera(t_cub3d *cub)

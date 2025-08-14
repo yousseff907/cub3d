@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:17:14 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/14 19:06:19 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/15 00:32:08 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int		is_space(char c);
 int		is_config_line(char *line);
 int		is_map_line(char *line);
 void	free_split(char **args);
+char	*trim_whitespace(char *str);
 
 // Main parsing functions (main_parsing.c)
 
@@ -43,6 +44,7 @@ void	file_content_identification(int argc, char **argv, t_cub3d *cub);
 // Configuration parsing functions (config_parsing.c)
 
 void	store_config_line(char *line, t_cub3d *cub);
+int		validate_complete_config(t_cub3d *cub);
 
 // Map parsing functions (map_parsing.c)
 
