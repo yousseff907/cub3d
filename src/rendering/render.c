@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 18:58:53 by odana             #+#    #+#             */
-/*   Updated: 2025/08/12 20:57:19 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 00:08:03 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_ray	cast_ray(t_camera *cam, t_map *map, int screen_x)
 	ray.wall_dist = dda(&ray, map);
 	return (ray);
 }
-
 
 int	tex_coord(t_ray *ray)
 {

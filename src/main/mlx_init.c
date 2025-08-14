@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 23:41:49 by odana             #+#    #+#             */
-/*   Updated: 2025/08/14 23:57:51 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 00:17:17 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ void	cleanup_exit(t_cub3d *cub, char *msg, int exit_code)
 	ft_putendl_fd(msg, STDERR_FILENO);
 	if (cub)
 		cleanup_cub3d(cub);
-	exit(1);
+	exit(exit_code);
 }

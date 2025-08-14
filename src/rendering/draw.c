@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:49:11 by odana             #+#    #+#             */
-/*   Updated: 2025/08/12 21:04:50 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 00:18:12 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	draw_texture_column(t_graphics *gfx, t_wall_draw wall,
 	{
 		tex_y = (int)tex_pos & (TEX_HEIGHT - 1);
 		tex_pos += wall.step;
-		color = get_pixel_texture(tex_data, tex_x, tex_y);
+		color = get_pixel_texture(tex_data, tex_x, tex_y, wall.line_length);
 		put_pixel(gfx, wall.screen_x, y, color);
 		y++;
 	}
@@ -56,9 +56,9 @@ void	draw_wall_column(t_graphics *gfx, int screen_x, t_ray *ray, t_textures *txt
 	int			tex_x;
 
 	wall = init_wall_draw(ray->wall_dist, screen_x);
-	tex_data = get_wall_data(ray, txt);
 	tex_x = calculate_texture(ray);
+	tex_data = get_wall_data(ray, txt, &wall.line_length);
 	draw_ceiling(gfx, screen_x, wall.draw_start, txt->ceiling_color);
-	draw_texture_column(gfx, wall, tex_data,tex_x);
+	draw_texture_column(gfx, wall, tex_data, tex_x);
 	draw_floor(gfx, screen_x, wall.draw_end, txt->floor_color);
 }

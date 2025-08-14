@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 22:57:12 by odana             #+#    #+#             */
-/*   Updated: 2025/08/14 23:01:26 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 00:17:52 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,10 @@ static void cleanup_textures(t_cub3d *cub)
         cub->txt.west_path = NULL;
     }
     destroy_images(cub);
-    return (cub->txt.north = NULL, cub->txt.south = NULL,
-        cub->txt.east = NULL, cub->txt.west = NULL);
+    cub->txt.north = NULL;
+    cub->txt.south = NULL;
+    cub->txt.east = NULL;
+    cub->txt.west = NULL;
 }
 
 static void cleanup_map(t_cub3d *cub)

@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:58:16 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/14 23:57:38 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 00:18:40 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ void	identify_type(char **parsed_file, t_cub3d *cub)
 			break ;
 		}
 		else
+		{
 			free_split(parsed_file);
 			cleanup_exit(cub, "Error: Invalid line in .cub file", 1);
+		}
 	}
 }
 

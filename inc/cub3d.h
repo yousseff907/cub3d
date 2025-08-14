@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/14 23:30:34 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 00:16:56 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ typedef struct s_cub3d
 typedef struct s_wall_draw
 {
 	int		line_height;
+	int		line_length;
 	int		draw_start;
 	int		draw_end;
 	int		screen_x;
@@ -164,32 +165,46 @@ typedef struct s_wall_draw
 }	t_wall_draw;
 
 
-// initi t_cub3d
+// Structure initialization functions
+void	init_cub3d(t_cub3d *cub);
 
-void	init_cub3d(t_cub3d *cub); // odana please add anything you need to add !!!!!
+// MLX setup functions
+void	create_mlx(t_cub3d *cub);
+void	create_image(t_cub3d *cub);
+void	load_textures(t_cub3d *cub);
+void	setup_hooks(t_cub3d *cub);
 
+// Cleanup functions
+void	cleanup_cub3d(t_cub3d *cub);
+int		close_window(t_cub3d *cub);
+void	cleanup_exit(t_cub3d *cub, char *msg, int exit_code);
+
+// Raycasting
 double	dda(t_ray *ray, t_map *map);
 
+// Drawing functions
 void	draw_ceiling(t_graphics *gfx, int x, int end, int color);
 void	draw_floor(t_graphics *gfx, int x, int start, int color);
 void	put_pixel(t_graphics *gfx, int x, int y, int color);
+void	draw_wall_column(t_graphics *gfx, int screen_x, t_ray *ray, t_textures *txt);
 
-int 	key_release(int keycode, t_cub3d *cub);
-int 	key_press(int keycode, t_cub3d *cub);
-int 	game_loop(t_cub3d *cub);
-
+// Movement
+int		key_release(int keycode, t_cub3d *cub);
+int		key_press(int keycode, t_cub3d *cub);
+int		game_loop(t_cub3d *cub);
 void	move_forward(t_cub3d *cub);
 void	move_backward(t_cub3d *cub);
 void	move_left(t_cub3d *cub);
 void	move_right(t_cub3d *cub);
 void	rotate_left(t_cub3d *cub);
 void	rotate_right(t_cub3d *cub);
+
+// Rendering
 void	render_frame(t_cub3d *cub);
+
+// Texture functions (UPDATED SIGNATURES)
 int		get_pixel_texture(char *tex_data, int tex_x, int tex_y, int line_length);
 int		calculate_texture(t_ray *ray);
-char	*get_wall_data(t_ray *ray, t_textures *txt);
-int 	close_window(t_cub3d *cub);
-void 	cleanup_cub3d(t_cub3d *cub);
-
+char	*get_wall_data(t_ray *ray, t_textures *txt, int *line_length);
 
 #endif

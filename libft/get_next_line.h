@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/26 14:25:10 by yitani            #+#    #+#             */
-/*   Updated: 2025/06/02 01:25:43 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/15 00:19:20 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,8 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "libft.h"
 
-size_t	ft_strlen(const char *str);
-char	*ft_strdup(const char *src);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *s, int c);
 char	*get_next_line(int fd);
 
 #endif

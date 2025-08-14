@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 17:19:44 by odana             #+#    #+#             */
-/*   Updated: 2025/08/14 23:32:32 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 00:18:25 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,25 +58,25 @@ void	load_textures(t_cub3d *cub)
     cub->txt.east_data = mlx_get_data_addr(cub->txt.east, &bpp, 
             &cub->txt.east_length, &endian);
     cub->txt.west = mlx_xpm_file_to_image(cub->gfx.mlx_ptr,
-		cub->txt.west_path,n&cub->txt.west_width, &cub->txt.west_height);
+		cub->txt.west_path, &cub->txt.west_width, &cub->txt.west_height);
     cub->txt.west_data = mlx_get_data_addr(cub->txt.west, &bpp, 
             &cub->txt.west_length, &endian);
 }
 
-char	*get_wall_data(t_ray *ray, t_textures *txt)
+char	*get_wall_data(t_ray *ray, t_textures *txt, int *line_length)
 {
 	if (ray->side == 0)
 	{
 		if (ray->dir_x > 0)
-			return (txt->east_data);
+			return (*line_length = txt->east_length, txt->east_data);
 		else
-			return (txt->west_data);
+			return (*line_length = txt->west_length, txt->west_data);
 	}
 	else
 	{
 		if (ray->dir_y > 0)
-			return (txt->south_data);
+			return (*line_length = txt->south_length, txt->south_data);
 		else
-			return (txt->north_data);
+			return (*line_length = txt->north_length, txt->north_data);
 	}
 }
