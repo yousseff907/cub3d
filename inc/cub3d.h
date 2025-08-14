@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/15 00:16:56 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 01:34:11 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,8 +141,6 @@ typedef struct s_keys
 	int s_pressed;
 	int a_pressed;
 	int d_pressed;
-	int left_pressed;
-	int right_pressed;
 } t_keys;
 
 typedef struct s_cub3d
@@ -196,8 +194,7 @@ void	move_forward(t_cub3d *cub);
 void	move_backward(t_cub3d *cub);
 void	move_left(t_cub3d *cub);
 void	move_right(t_cub3d *cub);
-void	rotate_left(t_cub3d *cub);
-void	rotate_right(t_cub3d *cub);
+int		mouse_move(int x, int y, t_cub3d *cub);
 
 // Rendering
 void	render_frame(t_cub3d *cub);

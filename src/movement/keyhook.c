@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:54:55 by odana             #+#    #+#             */
-/*   Updated: 2025/08/14 22:59:23 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 01:42:48 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,6 @@ int key_press(int keycode, t_cub3d *cub)
         cub->keys.a_pressed = 1;
     if (keycode == D_KEY)
         cub->keys.d_pressed = 1;
-    if (keycode == LEFT_KEY)
-        cub->keys.left_pressed = 1;
-    if (keycode == RIGHT_KEY)
-        cub->keys.right_pressed = 1;
     return (0);
 }
 
@@ -41,10 +37,6 @@ int key_release(int keycode, t_cub3d *cub)
         cub->keys.a_pressed = 0;
     if (keycode == D_KEY)
         cub->keys.d_pressed = 0;
-    if (keycode == LEFT_KEY)
-        cub->keys.left_pressed = 0;
-    if (keycode == RIGHT_KEY)
-        cub->keys.right_pressed = 0;
     return (0);
 }
 
@@ -58,13 +50,7 @@ int game_loop(t_cub3d *cub)
         move_left(cub);
     if (cub->keys.d_pressed)
         move_right(cub);
-    if (cub->keys.left_pressed)
-        rotate_left(cub);
-    if (cub->keys.right_pressed)
-        rotate_right(cub);
-    if (cub->keys.w_pressed || cub->keys.s_pressed || cub->keys.a_pressed || 
-        cub->keys.d_pressed || cub->keys.left_pressed || cub->keys.right_pressed)
-        render_frame(cub);
+    render_frame(cub);
     return (0);
 }
 

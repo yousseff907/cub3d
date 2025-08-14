@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 19:40:43 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/15 00:14:46 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/15 01:37:23 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ static void	init_keys(t_cub3d *cub)
 	cub->keys.s_pressed = 0;
 	cub->keys.a_pressed = 0;
 	cub->keys.d_pressed = 0;
-	cub->keys.left_pressed = 0;
-	cub->keys.right_pressed = 0;
 }
 
 static void	init_graphics(t_cub3d *cub)
@@ -66,8 +64,8 @@ static void	init_map_camera(t_cub3d *cub)
 	cub->cam.dir_y = 0.0;
 	cub->cam.plane_x = 0.0;
 	cub->cam.plane_y = 0.0;
-	cub->cam.move_speed = 0.05;
-	cub->cam.rot_speed = 0.03;
+	cub->cam.move_speed = 0.03;
+	cub->cam.rot_speed = 0.015;
 }
 
 void	init_cub3d(t_cub3d *cub)
