@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:58:16 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/15 00:38:19 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/15 00:40:10 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	identify_type(char **parsed_file, t_cub3d *cub)
 		else
 			free_split(parsed_file);
 			cleanup_exit(cub, "Error: Invalid line in .cub file", 1);
+		i++;
 	}
 }
 
