@@ -3,111 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:20:04 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/15 01:36:18 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 16:20:00 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
-/* Debug version of setup_player_position */
-
-static void	setup_player_position(t_cub3d *cub)
-{
-	int	x;
-	int	y;
-
-	printf("DEBUG: Looking for player position...\n");
-	printf("DEBUG: Map dimensions: %dx%d\n", cub->map.width, cub->map.height);
-	
-	if (!cub->map.grid)
-	{
-		printf("ERROR: Map grid is NULL!\n");
-		return;
-	}
-	
-	// First, let's print the entire map to see what we're working with
-	printf("DEBUG: Complete map:\n");
-	for (int i = 0; i < cub->map.height; i++)
-	{
-		if (cub->map.grid[i])
-			printf("  Row %d: '%s' (len=%zu)\n", i, cub->map.grid[i], ft_strlen(cub->map.grid[i]));
-		else
-			printf("  Row %d: NULL\n", i);
-	}
-	
-	y = 0;
-	while (y < cub->map.height)
-	{
-		if (!cub->map.grid[y])
-		{
-			printf("DEBUG: Row %d is NULL, skipping\n", y);
-			y++;
-			continue;
-		}
-		
-		x = 0;
-		int row_len = ft_strlen(cub->map.grid[y]);
-		printf("DEBUG: Checking row %d (length %d): '%s'\n", y, row_len, cub->map.grid[y]);
-		
-		while (x < row_len)
-		{
-			char c = cub->map.grid[y][x];
-			if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
-			{
-				printf("DEBUG: Found player '%c' at position (%d, %d)\n", c, x, y);
-				cub->cam.pos_x = x + 0.5;
-				cub->cam.pos_y = y + 0.5;
-				cub->map.player_spawn = c;
-				cub->map.grid[y][x] = '0';  // Replace player with empty space
-				printf("DEBUG: Player position set to (%.1f, %.1f), spawn direction: %c\n", 
-					cub->cam.pos_x, cub->cam.pos_y, cub->map.player_spawn);
-				return ;
-			}
-			x++;
-		}
-		y++;
-	}
-	printf("DEBUG: No player spawn position found in any row!\n");
-}
-
-
-static void	init_player_direction(t_cub3d *cub)
-{
-	printf("DEBUG: Initializing player direction for spawn: %c\n", cub->map.player_spawn);
-	if (cub->map.player_spawn == 'N')
-	{
-		cub->cam.dir_x = 0.0;
-		cub->cam.dir_y = -1.0;
-		cub->cam.plane_x = 0.66;
-		cub->cam.plane_y = 0.0;
-	}
-	else if (cub->map.player_spawn == 'S')
-	{
-		cub->cam.dir_x = 0.0;
-		cub->cam.dir_y = 1.0;
-		cub->cam.plane_x = -0.66;
-		cub->cam.plane_y = 0.0;
-	}
-	else if (cub->map.player_spawn == 'E')
-	{
-		cub->cam.dir_x = 1.0;
-		cub->cam.dir_y = 0.0;
-		cub->cam.plane_x = 0.0;
-		cub->cam.plane_y = 0.66;
-	}
-	else if (cub->map.player_spawn == 'W')
-	{
-		cub->cam.dir_x = -1.0;
-		cub->cam.dir_y = 0.0;
-		cub->cam.plane_x = 0.0;
-		cub->cam.plane_y = -0.66;
-	}
-	printf("DEBUG: Direction set to (%.2f, %.2f), plane (%.2f, %.2f)\n", 
-		cub->cam.dir_x, cub->cam.dir_y, cub->cam.plane_x, cub->cam.plane_y);
-}
 
 static void	validate_configuration(t_cub3d *cub)
 {

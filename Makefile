@@ -11,7 +11,7 @@ MAIN_SRC	= $(SRC_DIR)/main/main.c \
 		  $(SRC_DIR)/main/cub_init.c \
 		  $(SRC_DIR)/main/mlx_init.c \
 		  $(SRC_DIR)/main/player_init.c \
-		  $(SRC_DIR)/main/direction.c
+		  $(SRC_DIR)/main/direction.c \
 		  $(SRC_DIR)/main/cleanup.c
 
 MOVEMENT_SRC	= $(SRC_DIR)/movement/movement.c \

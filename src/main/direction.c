@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   direction.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 11:04:02 by odana             #+#    #+#             */
-/*   Updated: 2025/08/15 11:04:20 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 16:19:36 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,4 @@ void	init_player_direction(t_cub3d *cub)
 		set_east_direction(cub);
 	else if (cub->map.player_spawn == 'W')
 		set_west_direction(cub);
-		cub->cam.dir_x, cub->cam.dir_y, cub->cam.plane_x, cub->cam.plane_y);
 }
