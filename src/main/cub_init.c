@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 19:40:43 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/15 01:37:23 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 10:53:36 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static void	init_map_camera(t_cub3d *cub)
 	cub->cam.dir_y = 0.0;
 	cub->cam.plane_x = 0.0;
 	cub->cam.plane_y = 0.0;
-	cub->cam.move_speed = 0.03;
+	cub->cam.move_speed = 0.05;
 	cub->cam.rot_speed = 0.015;
 }
 

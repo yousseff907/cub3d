@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/15 01:34:11 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/15 11:10:00 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,7 +170,11 @@ void	init_cub3d(t_cub3d *cub);
 void	create_mlx(t_cub3d *cub);
 void	create_image(t_cub3d *cub);
 void	load_textures(t_cub3d *cub);
-void	setup_hooks(t_cub3d *cub);
+
+// Player setup functions
+
+void	setup_player_position(t_cub3d *cub);
+void	init_player_direction(t_cub3d *cub);
 
 // Cleanup functions
 void	cleanup_cub3d(t_cub3d *cub);
