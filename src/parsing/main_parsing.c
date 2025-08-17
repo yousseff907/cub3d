@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:58:16 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/17 16:50:11 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/17 19:35:49 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ void	file_content_identification(int argc, char **argv, t_cub3d *cub)
 	free_split(parsed_file);
 	if (!validate_complete_config(cub))
 		cleanup_exit(cub, "", 1);
-	if (!validate_map_content(cub))
-		cleanup_exit(cub, "Error: Invalid character in map", 1);
+	if (!complete_map_validation(cub))
+		cleanup_exit(cub, "", 1);
 }

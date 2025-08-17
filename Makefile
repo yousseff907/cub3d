@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: yitani <yitani@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/08/17 19:36:22 by yitani            #+#    #+#              #
+#    Updated: 2025/08/17 19:36:45 by yitani           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		= cub3D
 
 # Directories
@@ -27,6 +39,7 @@ RENDERING_SRC	= $(SRC_DIR)/rendering/dda.c \
 PARSING_SRC	= $(SRC_DIR)/parsing/main_parsing.c \
 		  $(SRC_DIR)/parsing/config_parsing_validation.c \
 		  $(SRC_DIR)/parsing/map_parsing.c \
+		  $(SRC_DIR)/parsing/map_floodfill.c \
 		  $(SRC_DIR)/parsing/map_validation_loops.c \
 		  $(SRC_DIR)/parsing/parsing_helpers.c \
 		  $(SRC_DIR)/parsing/parsing_utils.c \
