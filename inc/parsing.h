@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:17:14 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/17 16:42:01 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/17 17:19:21 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ void	store_map(char **parsed_file, int start_index, t_cub3d *cub);
 // Map validation functions (map_validation.c)
 
 int		validate_map_content(t_cub3d *cub);
+int		valid_player_count(t_cub3d *cub);
 
 #endif

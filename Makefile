@@ -27,7 +27,7 @@ RENDERING_SRC	= $(SRC_DIR)/rendering/dda.c \
 PARSING_SRC	= $(SRC_DIR)/parsing/main_parsing.c \
 		  $(SRC_DIR)/parsing/config_parsing_validation.c \
 		  $(SRC_DIR)/parsing/map_parsing.c \
-		  $(SRC_DIR)/parsing/map_validation.c \
+		  $(SRC_DIR)/parsing/map_validation_loops.c \
 		  $(SRC_DIR)/parsing/parsing_helpers.c \
 		  $(SRC_DIR)/parsing/parsing_utils.c \
 		  $(SRC_DIR)/parsing/validation_helpers.c \
