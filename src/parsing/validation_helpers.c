@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:21:19 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/14 18:58:31 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/17 16:57:50 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,12 @@ void	validate_input(int argc, char *argv[])
 		exit(1);
 	}
 	close(fd);
+}
+
+int	is_valid_char(char c)
+{
+	if (c == 'N' || c == 'E' || c == 'W' || c == 'S' || c == '1'
+			|| c == '0' || is_space(c))
+		return (1);
+	return (0);
 }

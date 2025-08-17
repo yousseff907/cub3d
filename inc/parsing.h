@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:17:14 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/15 00:32:08 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/17 16:42:01 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct s_cub3d t_cub3d;
 
 int		is_cub_file(char *file_name);
 void	validate_input(int argc, char *argv[]);
+int		is_valid_char(char c);
 
 // File reading functions (file_reading.c)
 
@@ -49,5 +50,9 @@ int		validate_complete_config(t_cub3d *cub);
 // Map parsing functions (map_parsing.c)
 
 void	store_map(char **parsed_file, int start_index, t_cub3d *cub);
+
+// Map validation functions (map_validation.c)
+
+int		validate_map_content(t_cub3d *cub);
 
 #endif
