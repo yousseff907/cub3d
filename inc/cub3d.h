@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/17 17:24:39 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/18 17:22:10 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,21 +101,21 @@ typedef struct s_textures
 	int		north_width;
 	int		north_height;
 	int		north_length;
-	
+
 	void	*south;
 	char	*south_data;
 	char	*south_path;
 	int		south_width;
 	int		south_height;
 	int		south_length;
-	
+
 	void	*east;
 	char	*east_data;
 	char	*east_path;
 	int		east_width;
 	int		east_height;
 	int		east_length;
-	
+
 	void	*west;
 	char	*west_data;
 	char	*west_path;
@@ -139,11 +139,11 @@ typedef struct s_graphics
 
 typedef struct s_keys
 {
-	int w_pressed;
-	int s_pressed;
-	int a_pressed;
-	int d_pressed;
-} t_keys;
+	int	w_pressed;
+	int	s_pressed;
+	int	a_pressed;
+	int	d_pressed;
+}	t_keys;
 
 typedef struct s_cub3d
 {
@@ -163,7 +163,6 @@ typedef struct s_wall_draw
 	int		screen_x;
 	double	step;
 }	t_wall_draw;
-
 
 // Structure initialization functions
 void	init_cub3d(t_cub3d *cub);
@@ -190,7 +189,8 @@ double	dda(t_ray *ray, t_map *map);
 void	draw_ceiling(t_graphics *gfx, int x, int end, int color);
 void	draw_floor(t_graphics *gfx, int x, int start, int color);
 void	put_pixel(t_graphics *gfx, int x, int y, int color);
-void	draw_wall_column(t_graphics *gfx, int screen_x, t_ray *ray, t_textures *txt);
+void	draw_wall_column(t_graphics *gfx, int screen_x,
+			t_ray *ray, t_textures *txt);
 
 // Movement
 int		key_release(int keycode, t_cub3d *cub);
@@ -206,7 +206,9 @@ int		mouse_move(int x, int y, t_cub3d *cub);
 void	render_frame(t_cub3d *cub);
 
 // Texture functions (UPDATED SIGNATURES)
-int		get_pixel_texture(char *tex_data, int tex_x, int tex_y, int line_length);
+
+int		get_pixel_texture(char *tex_data, int tex_x, int tex_y,
+			int line_length);
 int		calculate_texture(t_ray *ray);
 char	*get_wall_data(t_ray *ray, t_textures *txt, int *line_length);
 

@@ -6,7 +6,7 @@
 #    By: yitani <yitani@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/17 19:36:22 by yitani            #+#    #+#              #
-#    Updated: 2025/08/17 19:36:45 by yitani           ###   ########.fr        #
+#    Updated: 2025/08/18 17:22:53 by yitani           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ PARSING_SRC	= $(SRC_DIR)/parsing/main_parsing.c \
 		  $(SRC_DIR)/parsing/parsing_helpers.c \
 		  $(SRC_DIR)/parsing/parsing_utils.c \
 		  $(SRC_DIR)/parsing/validation_helpers.c \
-		  $(SRC_DIR)/parsing/file_reading.c
+		  $(SRC_DIR)/parsing/file_reading.c \
+		  $(SRC_DIR)/parsing/position_lst.c
 
 SRCS		= $(MAIN_SRC) $(MOVEMENT_SRC) $(RENDERING_SRC) $(PARSING_SRC)
 
