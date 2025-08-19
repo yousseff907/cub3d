@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:20:04 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/15 16:20:00 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/19 21:53:50 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,3 +132,6 @@ int main(int argc, char **argv)
 	return (0);
 }
 
+void	nothing(void)
+{
+}

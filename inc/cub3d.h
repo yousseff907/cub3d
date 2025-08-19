@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/18 17:22:10 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/19 21:53:57 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,5 +211,6 @@ int		get_pixel_texture(char *tex_data, int tex_x, int tex_y,
 			int line_length);
 int		calculate_texture(t_ray *ray);
 char	*get_wall_data(t_ray *ray, t_textures *txt, int *line_length);
+void	nothing(void);
 
 #endif
