@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:44:11 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/18 17:53:01 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/19 15:35:07 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	flood_fill_escape_check(char **map, int x, int y, int height)
 		return (1);
 	if (current == 'V')
 		return (1);
-	if (current == ' ')
+	if (is_space(current))
 		return (1);
 	map[y][x] = 'V';
 	if (!flood_fill_escape_check(map, x + 1, y, height)
