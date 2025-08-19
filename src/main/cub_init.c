@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 19:40:43 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 00:13:01 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 00:45:30 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ void	init_cub3d(t_cub3d *cub)
 	init_graphics(cub);
 	init_textures(cub);
 	init_map_camera(cub);
+	init_door_system(cub);
 }

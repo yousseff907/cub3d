@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 18:58:53 by odana             #+#    #+#             */
-/*   Updated: 2025/08/15 00:31:18 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 00:51:24 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	render_frame(t_cub3d *cub)
 {
 	int		x;
 	t_ray	ray;
+	t_door	*door;
 
 	if (!cub->gfx.img_ptr)
 	{
@@ -60,8 +61,13 @@ void	render_frame(t_cub3d *cub)
 	while (x < WIDTH)
 	{
 		ray = cast_ray(&cub->cam, &cub->map, x);
-		draw_wall_column(&cub->gfx, x, &ray, &cub->txt);
+		door = find_door(cub, ray.map_x, ray.map_y);
+		if (door)
+			draw_door_column(&cub->gfx, x, &ray, door, &cub->txt);
+		else
+			draw_wall_column(&cub->gfx, x, &ray, &cub->txt);
 		x++;
 	}
 	mlx_put_image_to_window(cub->gfx.mlx_ptr, cub->gfx.win_ptr, cub->gfx.img_ptr, 0, 0);
 }
+

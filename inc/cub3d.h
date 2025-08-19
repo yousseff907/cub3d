@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 00:13:17 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 00:59:37 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@
 # include <string.h>
 # include "../libft/libft.h"
 # include <errno.h>
-
 # include "parsing.h"
-# include "door.h"
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -47,6 +45,37 @@
 # define D_KEY 100
 # define LEFT_KEY 65363
 # define RIGHT_KEY 65361
+
+# define HORIZONTAL 0
+# define VERTICAL 1
+# define DOOR_TRIGGER_DISTANCE 1
+# define DOOR_AUTO_CLOSE_FRAMES 100
+# define DOOR_ANIMATION_SPEED 0.05
+# define DOOR_PASSABLE_THRESHOLD 0.75
+
+typedef enum e_door_state
+{
+	DOOR_CLOSED,
+	DOOR_OPENING,
+	DOOR_OPEN,
+	DOOR_CLOSING
+}	t_door_state;
+
+typedef struct s_door
+{
+	int			x;
+	int			y;
+	t_door_state	state;
+	double		open_progress;
+	int			orientation;
+	int			frames_since_trigger;
+}	t_door;
+
+typedef struct s_door_manager
+{
+	t_door	*doors;
+	int		door_count;
+}	t_door_manager;
 
 typedef struct s_ray
 {
@@ -214,5 +243,22 @@ int		get_pixel_texture(char *tex_data, int tex_x, int tex_y,
 int		calculate_texture(t_ray *ray);
 char	*get_wall_data(t_ray *ray, t_textures *txt, int *line_length);
 void	nothing(void);
+
+// Door system
+
+void	init_door_system(t_cub3d *cub);
+void	update_doors(t_cub3d *cub);
+void	cleanup_doors(t_cub3d *cub);
+
+int		count_doors(t_cub3d *cub);
+t_door	*find_door(t_cub3d *cub, int x, int y);
+int		can_pass(t_cub3d *cub, int x, int y);
+int		block_movement(t_cub3d *cub, int x, int y);
+
+int		calculate_door_tex_x(t_door *door, t_ray *ray);
+char	*get_door_wall_texture(t_ray *ray, t_textures *txt, int *line_length);
+void	draw_door_column(t_graphics *gfx, int screen_x, t_ray *ray, 
+			t_door *door, t_textures *txt);
+
 
 #endif
