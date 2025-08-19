@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:21:21 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/18 17:53:07 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/19 16:12:26 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,9 +96,7 @@ t_position	*find_all_empty_positions(t_cub3d *cub)
 			if (cub->map.grid[i][j] == '0' || cub->map.grid[i][j] == 'N'
 				|| cub->map.grid[i][j] == 'S' || cub->map.grid[i][j] == 'E'
 				|| cub->map.grid[i][j] == 'W')
-			{
 				add_position_to_list(&positions, j, i);
-			}
 			j++;
 		}
 		i++;

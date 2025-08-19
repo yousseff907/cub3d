@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:44:11 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/19 15:35:07 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/19 16:03:49 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,21 @@ int	flood_fill_escape_check(char **map, int x, int y, int height)
 {
 	char	current;
 
-	if (y < 0 || y >= height)
-		return (0);
-	if (x < 0 || x >= (int)ft_strlen(map[y]))
+	if (y < 0 || y >= height || x < 0 || x >= (int)ft_strlen(map[y]))
 		return (0);
 	current = map[y][x];
-	if (current == '1')
-		return (1);
-	if (current == 'V')
+	if (current == '1' || current == 'V')
 		return (1);
 	if (is_space(current))
+	{
+		map[y][x] = 'V';
+		if (!flood_fill_escape_check(map, x + 1, y, height)
+			|| !flood_fill_escape_check(map, x - 1, y, height)
+			|| !flood_fill_escape_check(map, x, y + 1, height)
+			|| !flood_fill_escape_check(map, x, y - 1, height))
+			return (0);
 		return (1);
+	}
 	map[y][x] = 'V';
 	if (!flood_fill_escape_check(map, x + 1, y, height)
 		|| !flood_fill_escape_check(map, x - 1, y, height)
@@ -53,23 +57,23 @@ int	validate_all_empty_positions(t_cub3d *cub)
 	int			all_contained;
 
 	empty_positions = find_all_empty_positions(cub);
-	map_copy = duplicate_map(cub);
-	if (!map_copy)
-		return (free_position_list(empty_positions), 0);
+	if (!empty_positions)
+		return (1);
 	all_contained = 1;
 	current = empty_positions;
 	while (current && all_contained)
 	{
-		if (!is_position_visited(map_copy, current->x, current->y,
-				cub->map.height))
+		map_copy = duplicate_map(cub);
+		if (!map_copy)
 		{
-			if (!flood_fill_escape_check(map_copy, current->x, current->y,
-					cub->map.height))
-				all_contained = 0;
+			free_position_list(empty_positions);
+			return (0);
 		}
+		if (!flood_fill_escape_check(map_copy, current->x, current->y, cub->map.height))
+			all_contained = 0;
+		free_split(map_copy);
 		current = current->next;
 	}
-	free_split(map_copy);
 	free_position_list(empty_positions);
 	return (all_contained);
 }
