@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 00:18:29 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 00:22:33 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 00:42:39 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ t_door	*find_door(t_cub3d *cub, int x, int y)
 
 	if (!cub->door_mgr.doors)
 		return (NULL);
-	
 	i = 0;
 	while (i < cub->door_mgr.door_count)
 	{
@@ -59,6 +58,16 @@ int	can_pass(t_cub3d *cub, int x, int y)
 	if (!door)
 		return (0);
 	return (door->open_progress > DOOR_PASSABLE_THRESHOLD);
+}
+
+int	block_movement(t_cub3d *cub, int x, int y)
+{
+	t_door	*door;
+
+	door = find_door(cub, x, y);
+	if (!door)
+		return (1);
+	return (door->open_progress <= DOOR_PASSABLE_THRESHOLD);
 }
 
 void	cleanup_doors(t_cub3d *cub)
