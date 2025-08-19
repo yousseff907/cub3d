@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:20:29 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 01:29:29 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 02:23:20 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,6 @@ static int	calculate_map_width(char **grid)
 	return (max);
 }
 
-
-static void	convert_whitespace_to_walls(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i])
-	{
-		if (is_space(line[i]))
-			line[i] = '1';
-		i++;
-	}
-}
-
 void	store_map(char **parsed_file, int start_index, t_cub3d *cub)
 {
 	int	map_lines;
@@ -66,7 +52,6 @@ void	store_map(char **parsed_file, int start_index, t_cub3d *cub)
 			free_split(parsed_file);
 			cleanup_exit(cub, "Error: Memory allocation failed", 1);
 		}
-		convert_whitespace_to_walls(cub->map.grid[i]);
 		start_index++;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 02:00:00 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 02:16:18 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,10 @@
 # define DOOR_AUTO_CLOSE_FRAMES 100
 # define DOOR_ANIMATION_SPEED 0.05
 # define DOOR_PASSABLE_THRESHOLD 0.75
+
+#define MINIMAP_SIZE 200
+#define MINIMAP_MARGIN 20
+#define MINIMAP_SCALE 8
 
 typedef enum e_door_state
 {
@@ -265,5 +269,10 @@ int		calculate_door_tex_x(t_door *door, t_ray *ray);
 char	*get_door_wall_texture(t_ray *ray, t_textures *txt, int *line_length);
 void	draw_door_column(t_cub3d *cub, int screen_x, t_ray *ray, t_door *door);
 
+// Minimap system
+
+void	draw_minimap(t_cub3d *cub);
+void	draw_player_on_minimap(t_cub3d *cub);
+void	draw_player_direction(t_cub3d *cub);
 
 #endif

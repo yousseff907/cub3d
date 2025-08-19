@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:58:16 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 01:29:50 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 02:36:27 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,25 @@ char	**duplicate_map(t_cub3d *cub)
 	return (dup_map);
 }
 
+void	convert_spaces_to_walls(t_cub3d *cub)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < cub->map.height)
+	{
+		j = 0;
+		while (cub->map.grid[i][j])
+		{
+			if (is_space(cub->map.grid[i][j]))
+				cub->map.grid[i][j] = '1';
+			j++;
+		}
+		i++;
+	}
+}
+
 void	file_content_identification(int argc, char **argv, t_cub3d *cub)
 {
 	char	**parsed_file;
@@ -75,7 +94,9 @@ void	file_content_identification(int argc, char **argv, t_cub3d *cub)
 	identify_type(parsed_file, cub);
 	free_split(parsed_file);
 	if (!validate_complete_config(cub))
-		cleanup_exit(cub, "", 1);
+		cleanup_exit(cub, "Error: Map Validation Failed", 1);
 	if (!complete_map_validation(cub))
-		cleanup_exit(cub, "", 1);
+		cleanup_exit(cub, "Error: Map Validation Failed", 1);
+	convert_spaces_to_walls(cub);
 }
+

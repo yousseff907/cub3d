@@ -13,7 +13,7 @@ MAIN_SRC	= main.c cub_init.c mlx_init.c player_init.c direction.c cleanup.c \
 MOVEMENT_SRC	= movement.c rotate.c keyhook.c
 
 RENDERING_SRC	= dda.c draw.c texture.c render.c helpers.c \
-		  door_render.c door_utils.c door_draw.c
+		  door_render.c door_utils.c door_draw.c minimap.c 
 
 PARSING_SRC	= main_parsing.c config_parsing_validation.c map_parsing.c \
 		  map_floodfill.c map_validation_loops.c parsing_helpers.c \
