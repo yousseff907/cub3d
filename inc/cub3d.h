@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/19 21:53:57 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 00:13:17 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include <errno.h>
 
 # include "parsing.h"
+# include "door.h"
 
 # define WIDTH 1920
 # define HEIGHT 1080
@@ -147,11 +148,12 @@ typedef struct s_keys
 
 typedef struct s_cub3d
 {
-	t_graphics	gfx;
-	t_textures	txt;
-	t_camera	cam;
-	t_map		map;
-	t_keys		keys;
+	t_door_manager	door_mgr;
+	t_graphics		gfx;
+	t_textures		txt;
+	t_camera		cam;
+	t_map			map;
+	t_keys			keys;
 }	t_cub3d;
 
 typedef struct s_wall_draw
