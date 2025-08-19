@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_reading.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:51:31 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/19 16:34:49 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 01:08:53 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,6 @@ int	rows_count(char *file_name)
 	close(fd);
 	return (row);
 }
-
-									/*
-	row[0] rows count for loop
-	row[1] total number of rows
-									*/
 
 char	**alloc_file(char *file_name)
 {
@@ -76,8 +71,6 @@ char	**store_file(char *file_name)
 	while (row[0] < row[1])
 	{
 		line = get_next_line(fd);
-		printf("lin: %s\n", line);
-		printf("lin: %ld\n", ft_strlen(line));
 		if (!line)
 			break ;
 		if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
