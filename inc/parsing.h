@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:17:14 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/18 17:54:08 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/19 23:39:50 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_position
 // Validation functions (validation_helpers.c)
 
 int			is_cub_file(char *file_name);
-void		validate_input(int argc, char *argv[]);
+void		validate_input(int argc, char *argv[], t_cub3d *cub);
 int			is_valid_char(char c);
 
 // File reading functions (file_reading.c)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:58:16 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/18 17:52:34 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/19 23:39:22 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	file_content_identification(int argc, char **argv, t_cub3d *cub)
 {
 	char	**parsed_file;
 
-	validate_input(argc, argv);
+	validate_input(argc, argv, cub);
 	parsed_file = store_file(argv[1]);
 	if (!parsed_file)
 		cleanup_exit(cub, "Error: Failed to read file", 1);
