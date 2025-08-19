@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:51:31 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/14 18:52:16 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/19 16:34:49 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ char	**store_file(char *file_name)
 	while (row[0] < row[1])
 	{
 		line = get_next_line(fd);
+		printf("lin: %s\n", line);
+		printf("lin: %ld\n", ft_strlen(line));
 		if (!line)
 			break ;
 		if (ft_strlen(line) > 0 && line[ft_strlen(line) - 1] == '\n')
