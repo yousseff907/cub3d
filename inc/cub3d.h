@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 02:16:18 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 02:44:44 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,10 @@
 
 # define HORIZONTAL 0
 # define VERTICAL 1
-# define DOOR_TRIGGER_DISTANCE 3
+# define DOOR_TRIGGER_DISTANCE 2
 # define DOOR_AUTO_CLOSE_FRAMES 100
-# define DOOR_ANIMATION_SPEED 0.05
-# define DOOR_PASSABLE_THRESHOLD 0.75
+# define DOOR_ANIMATION_SPEED 0.02
+# define DOOR_PASSABLE_THRESHOLD 0.9
 
 #define MINIMAP_SIZE 200
 #define MINIMAP_MARGIN 20
