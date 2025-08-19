@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 00:10:04 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 00:19:19 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 01:32:18 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ static void	create_doors(t_cub3d *cub)
 			{
 				orientation = door_orientation(cub->map.grid, j, i, cub->map.height);
 				init_door(&cub->door_mgr.doors[door_index], j, i, orientation);
-				cub->map.grid[i][j] = '0';
 				door_index++;
 			}
 			j++;

@@ -6,13 +6,13 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 18:58:53 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 00:51:24 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 02:00:20 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-t_ray	cast_ray(t_camera *cam, t_map *map, int screen_x)
+t_ray	cast_ray(t_camera *cam, t_cub3d *cub, int screen_x)
 {
 	t_ray	ray;
 	double camera_x;
@@ -22,7 +22,7 @@ t_ray	cast_ray(t_camera *cam, t_map *map, int screen_x)
 	ray.pos_y = cam->pos_y;
 	ray.dir_x = cam->dir_x + cam->plane_x * camera_x;
 	ray.dir_y = cam->dir_y + cam->plane_y * camera_x;
-	ray.wall_dist = dda(&ray, map);
+	ray.wall_dist = dda(&ray, cub);
 	return (ray);
 }
 
@@ -45,7 +45,6 @@ int	tex_coord(t_ray *ray)
 	return (tex_x);
 }
 
-
 void	render_frame(t_cub3d *cub)
 {
 	int		x;
@@ -60,14 +59,15 @@ void	render_frame(t_cub3d *cub)
 	x = 0;
 	while (x < WIDTH)
 	{
-		ray = cast_ray(&cub->cam, &cub->map, x);
+		ray = cast_ray(&cub->cam, cub, x);
 		door = find_door(cub, ray.map_x, ray.map_y);
-		if (door)
-			draw_door_column(&cub->gfx, x, &ray, door, &cub->txt);
+		if (door && door->open_progress < DOOR_PASSABLE_THRESHOLD)
+			draw_door_column(cub, x, &ray, door);
 		else
 			draw_wall_column(&cub->gfx, x, &ray, &cub->txt);
 		x++;
 	}
 	mlx_put_image_to_window(cub->gfx.mlx_ptr, cub->gfx.win_ptr, cub->gfx.img_ptr, 0, 0);
 }
+
 

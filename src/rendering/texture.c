@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 17:19:44 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 01:08:18 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 01:38:37 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,12 @@ void	load_textures(t_cub3d *cub)
         cleanup_exit(cub, "Error: Failed to load west texture", 1);
     cub->txt.west_data = mlx_get_data_addr(cub->txt.west, &bpp, 
             &cub->txt.west_length, &endian);
+	cub->txt.door = mlx_xpm_file_to_image(cub->gfx.mlx_ptr,
+        "./textures/door.xpm", &cub->txt.door_width, &cub->txt.door_height);
+    if (!cub->txt.door)
+        cleanup_exit(cub, "Error: Failed to load door texture", 1);
+    cub->txt.door_data = mlx_get_data_addr(cub->txt.door, &bpp,
+        &cub->txt.door_length, &endian);
 }
 
 

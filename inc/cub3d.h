@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 00:59:37 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 02:00:00 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@
 
 # define HORIZONTAL 0
 # define VERTICAL 1
-# define DOOR_TRIGGER_DISTANCE 1
+# define DOOR_TRIGGER_DISTANCE 3
 # define DOOR_AUTO_CLOSE_FRAMES 100
 # define DOOR_ANIMATION_SPEED 0.05
 # define DOOR_PASSABLE_THRESHOLD 0.75
@@ -153,6 +153,12 @@ typedef struct s_textures
 	int		west_height;
 	int		west_length;
 
+	void	*door;
+	char	*door_data;
+	int		door_width;
+	int		door_height;
+	int		door_length;
+
 	int		floor_color;
 	int		ceiling_color;
 }	t_textures;
@@ -195,7 +201,7 @@ typedef struct s_wall_draw
 	double	step;
 }	t_wall_draw;
 
-// Structure initialization functions
+
 void	init_cub3d(t_cub3d *cub);
 
 // MLX setup functions
@@ -214,7 +220,7 @@ int		close_window(t_cub3d *cub);
 void	cleanup_exit(t_cub3d *cub, char *msg, int exit_code);
 
 // Raycasting
-double	dda(t_ray *ray, t_map *map);
+double	dda(t_ray *ray, t_cub3d *cub);
 
 // Drawing functions
 void	draw_ceiling(t_graphics *gfx, int x, int end, int color);
@@ -257,8 +263,7 @@ int		block_movement(t_cub3d *cub, int x, int y);
 
 int		calculate_door_tex_x(t_door *door, t_ray *ray);
 char	*get_door_wall_texture(t_ray *ray, t_textures *txt, int *line_length);
-void	draw_door_column(t_graphics *gfx, int screen_x, t_ray *ray, 
-			t_door *door, t_textures *txt);
+void	draw_door_column(t_cub3d *cub, int screen_x, t_ray *ray, t_door *door);
 
 
 #endif

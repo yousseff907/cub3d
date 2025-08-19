@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:29:06 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 00:51:00 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 01:58:22 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,28 @@ static double	wall_dist(t_ray *ray)
 	return (perp_wall_dist);
 }
 
-double	dda(t_ray *ray, t_map *map)
+static int	ray_hit_wall(t_ray *ray, t_cub3d *cub)
+{
+	char	cell;
+	t_door	*door;
+
+	if (ray->map_y < 0 || ray->map_y >= cub->map.height || 
+		ray->map_x < 0 || ray->map_x >= (int)ft_strlen(cub->map.grid[ray->map_y]))
+		return (1);
+	
+	cell = cub->map.grid[ray->map_y][ray->map_x];
+	if (cell == '1' || is_space(cell))
+		return (1);
+	if (cell == 'D')
+	{
+		door = find_door(cub, ray->map_x, ray->map_y);
+		if (door && door->open_progress < DOOR_PASSABLE_THRESHOLD)
+			return (1);
+	}
+	return (0);
+}
+
+double	dda(t_ray *ray, t_cub3d *cub)
 {
 	int	hit;
 
@@ -71,8 +92,7 @@ double	dda(t_ray *ray, t_map *map)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		if (map->grid[ray->map_y][ray->map_x] == '1')
-			hit = 1;
+		hit = ray_hit_wall(ray, cub);
 	}
 	return (wall_dist(ray));
 }
