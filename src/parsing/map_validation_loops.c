@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:21:21 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 02:37:17 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 09:35:29 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,8 @@ t_position	*find_all_empty_positions(t_cub3d *cub)
 		{
 			if (cub->map.grid[i][j] == '0' || cub->map.grid[i][j] == 'N'
 				|| cub->map.grid[i][j] == 'S' || cub->map.grid[i][j] == 'E'
-				|| cub->map.grid[i][j] == 'W' || cub->map.grid[i][j] == 'D')
+				|| cub->map.grid[i][j] == 'W' || cub->map.grid[i][j] == 'D'
+				|| cub->map.grid[i][j] == 'X')
 				add_position_to_list(&positions, j, i);
 			j++;
 		}

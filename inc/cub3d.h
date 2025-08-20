@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 08:11:01 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 09:51:17 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,9 @@
 # define DOOR_AUTO_CLOSE_FRAMES 100
 # define DOOR_ANIMATION_SPEED 0.02
 # define DOOR_PASSABLE_THRESHOLD 0.9
+
+# define SPRITE_ANIMATION_FRAMES 4
+# define SPRITE_ANIMATION_SPEED 8
 
 typedef struct s_minimap
 {
@@ -182,9 +185,47 @@ typedef struct s_textures
 	int		door_height;
 	int		door_length;
 
+	void	*sprite[SPRITE_ANIMATION_FRAMES];
+	char	*sprite_data[SPRITE_ANIMATION_FRAMES];
+	char	*sprite_paths[SPRITE_ANIMATION_FRAMES];
+	int		sprite_width[SPRITE_ANIMATION_FRAMES];
+	int		sprite_height[SPRITE_ANIMATION_FRAMES];
+	int		sprite_length[SPRITE_ANIMATION_FRAMES];
+
 	int		floor_color;
 	int		ceiling_color;
 }	t_textures;
+
+typedef struct s_sprite
+{
+	double	x;
+	double	y;
+	double	distance;
+	int		current_frame;
+	int		animation_counter;
+}	t_sprite;
+
+typedef struct s_sprite_manager
+{
+	t_sprite	*sprites;
+	int			sprite_count;
+}	t_sprite_manager;
+
+typedef struct s_sprite_draw
+{
+	double	sprite_x;
+	double	sprite_y;
+	double	inv_det;
+	double	transform_x;
+	double	transform_y;
+	int		sprite_screen_x;
+	int		sprite_height;
+	int		sprite_width;
+	int		draw_start_y;
+	int		draw_end_y;
+	int		draw_start_x;
+	int		draw_end_x;
+}	t_sprite_draw;
 
 typedef struct s_graphics
 {
@@ -207,6 +248,7 @@ typedef struct s_keys
 typedef struct s_cub3d
 {
 	t_door_manager	door_mgr;
+	t_sprite_manager	sprite_mgr;
 	t_graphics		gfx;
 	t_textures		txt;
 	t_camera		cam;
@@ -230,6 +272,8 @@ void	init_cub3d(t_cub3d *cub);
 // MLX setup functions
 void	create_mlx(t_cub3d *cub);
 void	create_image(t_cub3d *cub);
+void	load_wall_textures(t_cub3d *cub);
+void	load_wall_textures_2(t_cub3d *cub);
 void	load_textures(t_cub3d *cub);
 
 // Player setup functions
@@ -265,7 +309,7 @@ int		mouse_move(int x, int y, t_cub3d *cub);
 // Rendering
 void	render_frame(t_cub3d *cub);
 
-// Texture functions (UPDATED SIGNATURES)
+// Texture functions
 
 int		get_pixel_texture(char *tex_data, int tex_x, int tex_y,
 			int line_length);
@@ -287,6 +331,19 @@ int		block_movement(t_cub3d *cub, int x, int y);
 int		calculate_door_tex_x(t_door *door, t_ray *ray);
 char	*get_door_wall_texture(t_ray *ray, t_textures *txt, int *line_length);
 void	draw_door_column(t_cub3d *cub, int screen_x, t_ray *ray, t_door *door);
+
+// Sprite system
+
+void	init_sprite_system(t_cub3d *cub);
+void	update_sprites(t_cub3d *cub);
+void	render_sprites(t_cub3d *cub);
+void	cleanup_sprites(t_cub3d *cub);
+int		validate_sprites(t_cub3d *cub);
+int		count_sprites(t_cub3d *cub);
+void	calculate_sprite_distances(t_cub3d *cub);
+void	sort_sprites_by_distance(t_cub3d *cub);
+void	store_sprite_textures(t_cub3d *cub, char *sprite_str);
+void	render_single_sprite(t_cub3d *cub, t_sprite *sprite);
 
 // Minimap system
 

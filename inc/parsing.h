@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:17:14 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/19 23:50:10 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 09:43:56 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void		file_content_identification(int argc, char **argv, t_cub3d *cub);
 
 void		store_config_line(char *line, t_cub3d *cub);
 int			validate_complete_config(t_cub3d *cub);
+char		*store_texture_path(char *path_str, t_cub3d *cub);
 
 void		store_map(char **parsed_file, int start_index, t_cub3d *cub);
 char		**duplicate_map(t_cub3d *cub);

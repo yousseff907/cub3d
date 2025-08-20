@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:59:17 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/15 01:04:52 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 09:46:11 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	validate_texture_file(char *path)
 	return (1);
 }
 
-static char	*store_texture_path(char *path_str, t_cub3d *cub)
+char	*store_texture_path(char *path_str, t_cub3d *cub)
 {
 	char	*trimmed_path;
 	
@@ -95,6 +95,8 @@ void	store_config_line(char *line, t_cub3d *cub)
 		store_color(cub, trimmed + 2, &cub->txt.floor_color);
 	else if (ft_strncmp(trimmed, "C ", 2) == 0)
 		store_color(cub, trimmed + 2, &cub->txt.ceiling_color);
+	else if (ft_strncmp(trimmed, "SP ", 3) == 0)
+		store_sprite_textures(cub, trimmed + 3);
 	else
 	{
 		free(trimmed);
@@ -117,5 +119,8 @@ int	validate_complete_config(t_cub3d *cub)
 		return (ft_putendl_fd("Error: Missing floor color (F)", 2), 0);
 	if (cub->txt.ceiling_color == -1)
 		return (ft_putendl_fd("Error: Missing ceiling color (C)", 2), 0);
+	if (!validate_sprites(cub))
+		return (0);
 	return (1);
 }
+

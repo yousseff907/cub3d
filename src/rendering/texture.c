@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 17:19:44 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 01:38:37 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 09:48:40 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,43 +40,43 @@ int	get_pixel_texture(char *tex_data, int tex_x, int tex_y, int line_length)
 	return (color);
 }
 
-void	load_textures(t_cub3d *cub)
+void	load_wall_textures(t_cub3d *cub)
 {
-    int bpp;
+	int	bpp;
 	int	endian;
-	
-    cub->txt.north = mlx_xpm_file_to_image(cub->gfx.mlx_ptr, 
-            cub->txt.north_path, &cub->txt.north_width, &cub->txt.north_height);
-    if (!cub->txt.north)
-        cleanup_exit(cub, "Error: Failed to load north texture", 1);
-    cub->txt.north_data = mlx_get_data_addr(cub->txt.north, &bpp, 
-            &cub->txt.north_length, &endian);
-    cub->txt.south = mlx_xpm_file_to_image(cub->gfx.mlx_ptr, 
-            cub->txt.south_path, &cub->txt.south_width, &cub->txt.south_height);
-    if (!cub->txt.south)
-        cleanup_exit(cub, "Error: Failed to load south texture", 1);
-    cub->txt.south_data = mlx_get_data_addr(cub->txt.south, &bpp, 
-        	&cub->txt.south_length, &endian);
-    cub->txt.east = mlx_xpm_file_to_image(cub->gfx.mlx_ptr, 
-            cub->txt.east_path, &cub->txt.east_width, &cub->txt.east_height);
-    if (!cub->txt.east)
-        cleanup_exit(cub, "Error: Failed to load east texture", 1);
-    cub->txt.east_data = mlx_get_data_addr(cub->txt.east, &bpp, 
-            &cub->txt.east_length, &endian);
-    cub->txt.west = mlx_xpm_file_to_image(cub->gfx.mlx_ptr,
-		cub->txt.west_path, &cub->txt.west_width, &cub->txt.west_height);
-    if (!cub->txt.west)
-        cleanup_exit(cub, "Error: Failed to load west texture", 1);
-    cub->txt.west_data = mlx_get_data_addr(cub->txt.west, &bpp, 
-            &cub->txt.west_length, &endian);
-	cub->txt.door = mlx_xpm_file_to_image(cub->gfx.mlx_ptr,
-        "./textures/door.xpm", &cub->txt.door_width, &cub->txt.door_height);
-    if (!cub->txt.door)
-        cleanup_exit(cub, "Error: Failed to load door texture", 1);
-    cub->txt.door_data = mlx_get_data_addr(cub->txt.door, &bpp,
-        &cub->txt.door_length, &endian);
+
+	cub->txt.north = mlx_xpm_file_to_image(cub->gfx.mlx_ptr,
+		cub->txt.north_path, &cub->txt.north_width, &cub->txt.north_height);
+	if (!cub->txt.north)
+		cleanup_exit(cub, "Error: Failed to load north texture", 1);
+	cub->txt.north_data = mlx_get_data_addr(cub->txt.north, &bpp,
+		&cub->txt.north_length, &endian);
+	cub->txt.south = mlx_xpm_file_to_image(cub->gfx.mlx_ptr,
+		cub->txt.south_path, &cub->txt.south_width, &cub->txt.south_height);
+	if (!cub->txt.south)
+		cleanup_exit(cub, "Error: Failed to load south texture", 1);
+	cub->txt.south_data = mlx_get_data_addr(cub->txt.south, &bpp,
+		&cub->txt.south_length, &endian);
 }
 
+void	load_wall_textures_2(t_cub3d *cub)
+{
+	int	bpp;
+	int	endian;
+
+	cub->txt.east = mlx_xpm_file_to_image(cub->gfx.mlx_ptr,
+		cub->txt.east_path, &cub->txt.east_width, &cub->txt.east_height);
+	if (!cub->txt.east)
+		cleanup_exit(cub, "Error: Failed to load east texture", 1);
+	cub->txt.east_data = mlx_get_data_addr(cub->txt.east, &bpp,
+		&cub->txt.east_length, &endian);
+	cub->txt.west = mlx_xpm_file_to_image(cub->gfx.mlx_ptr,
+		cub->txt.west_path, &cub->txt.west_width, &cub->txt.west_height);
+	if (!cub->txt.west)
+		cleanup_exit(cub, "Error: Failed to load west texture", 1);
+	cub->txt.west_data = mlx_get_data_addr(cub->txt.west, &bpp,
+		&cub->txt.west_length, &endian);
+}
 
 char	*get_wall_data(t_ray *ray, t_textures *txt, int *line_length)
 {

@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:20:04 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 02:45:41 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 09:31:07 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ void	nothing(void)
 int main(int argc, char **argv)
 {
 	t_cub3d *cub;
+	
 	cub = malloc(sizeof(t_cub3d));
 	if (!cub)
 		cleanup_exit(cub, "Error: Memory allocation failed", 1);
 	init_cub3d(cub);
 	file_content_identification(argc, argv, cub);
 	init_door_system(cub);
+	init_sprite_system(cub);
 	setup_player_position(cub);
 	init_player_direction(cub);
 	create_mlx(cub);

@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:54:55 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 00:45:56 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 09:30:48 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int key_release(int keycode, t_cub3d *cub)
 int game_loop(t_cub3d *cub)
 {
     update_doors(cub);
+    update_sprites(cub);
     if (cub->keys.w_pressed)
         move_forward(cub);
     if (cub->keys.s_pressed)
