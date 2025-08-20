@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:59:17 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 21:49:38 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 22:07:40 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ static int	validate_texture_file(char *path)
 	return (1);
 }
 
-char	*store_texture_path(char *trimmed, char **parsed_file, char *path_str, t_cub3d *cub)
+char	*store_texture_path(char *trimmed, char **parsed_file,
+			char *path_str, t_cub3d *cub)
 {
 	char	*trimmed_path;
 
@@ -52,63 +53,58 @@ char	*store_texture_path(char *trimmed, char **parsed_file, char *path_str, t_cu
 	return (trimmed_path);
 }
 
-static void	store_color(t_cub3d *cub, char *color_str, int *color)
+static void	store_color(char **file, char *trimmed, t_cub3d *cub, int *color)
 {
 	char		**rgb;
 	long long	rgb_arr[4];
 	char		*trimmed_color;
+	char		*color_str;
 
+	color_str = trimmed + 2;
 	rgb_arr[3] = 0;
 	trimmed_color = trim_whitespace(color_str);
 	if (!trimmed_color)
-		cleanup_exit(cub, "Error: Trimming failed", 1);
+		return (free_split(file), free(trimmed),
+			cleanup_exit(cub, "Error: Trimming failed", 1));
 	rgb = ft_split(trimmed_color, ',');
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2])
-	{
-		free(trimmed_color);
-		free_split(rgb);
-		cleanup_exit(cub, "Error: Invalid color format", 1);
-	}
+		return (free(trimmed), free(trimmed_color), free_split(rgb),
+			free_split(file),
+			cleanup_exit(cub, "Error: Invalid color format", 1));
 	rgb_arr[0] = custom_atoll(rgb[0], rgb_arr[3]);
 	rgb_arr[1] = custom_atoll(rgb[1], rgb_arr[3]);
 	rgb_arr[2] = custom_atoll(rgb[2], rgb_arr[3]);
 	if (rgb_arr[0] < 0 || rgb_arr[0] > 255 || rgb_arr[1] < 0 || rgb_arr[1] > 255
 		|| rgb_arr[2] < 0 || rgb_arr[2] > 255)
-		return (free(trimmed_color), free_split(rgb),
-			cleanup_exit(cub, "Error: RGB values must be 0-255", 1));
+		return (free(trimmed_color), free_split(rgb), free(trimmed),
+			free_split(file), cleanup_exit(cub, "Error: RGB values 0-255", 1));
 	*color = (rgb_arr[0] << 16) | (rgb_arr[1] << 8) | rgb_arr[2];
 	return (free(trimmed_color), free_split(rgb));
 }
 
-void	store_config_line(char **parsed_file, char *line, t_cub3d *cub)
+void	store_config_line(char **p, char *line, t_cub3d *cub)
 {
 	char	*trimmed;
 
 	trimmed = trim_whitespace(line);
 	if (!trimmed)
-	{
-		free_split(parsed_file);
-		cleanup_exit(cub, "Error: Trimming failed", 1);
-	}
+		return (free_split(p), cleanup_exit(cub, "Error: Trim", 1));
 	if (ft_strncmp(trimmed, "NO ", 3) == 0)
-		cub->txt.north_path = store_texture_path(trimmed, parsed_file, trimmed + 3, cub);
+		cub->txt.north_path = store_texture_path(trimmed, p, trimmed + 3, cub);
 	else if (ft_strncmp(trimmed, "SO ", 3) == 0)
-		cub->txt.south_path = store_texture_path(trimmed, parsed_file, trimmed + 3, cub);
+		cub->txt.south_path = store_texture_path(trimmed, p, trimmed + 3, cub);
 	else if (ft_strncmp(trimmed, "WE ", 3) == 0)
-		cub->txt.west_path = store_texture_path(trimmed, parsed_file, trimmed + 3, cub);
+		cub->txt.west_path = store_texture_path(trimmed, p, trimmed + 3, cub);
 	else if (ft_strncmp(trimmed, "EA ", 3) == 0)
-		cub->txt.east_path = store_texture_path(trimmed, parsed_file, trimmed + 3, cub);
+		cub->txt.east_path = store_texture_path(trimmed, p, trimmed + 3, cub);
 	else if (ft_strncmp(trimmed, "F ", 2) == 0)
-		store_color(cub, trimmed + 2, &cub->txt.floor_color);
+		store_color(p, trimmed, cub, &cub->txt.floor_color);
 	else if (ft_strncmp(trimmed, "C ", 2) == 0)
-		store_color(cub, trimmed + 2, &cub->txt.ceiling_color);
+		store_color(p, trimmed, cub, &cub->txt.ceiling_color);
 	else if (ft_strncmp(trimmed, "SP ", 3) == 0)
-		store_sprite_textures(trimmed, parsed_file, cub, trimmed + 3);
+		store_sprite_textures(trimmed, p, cub, trimmed + 3);
 	else
-	{
-		free(trimmed);
-		cleanup_exit(cub, "Error: Invalid configuration line", 1);
-	}
+		return (free(trimmed), cleanup_exit(cub, "Error: Invalid line", 1));
 	free(trimmed);
 }
 

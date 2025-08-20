@@ -6,13 +6,14 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 09:40:15 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 21:53:19 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 22:08:27 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static int	parse_sprite_paths(char *trimmed, char **parsed_file, t_cub3d *cub, char **sprite_paths)
+static int	parse_sprite_paths(char *trimmed, char **parsed_file,
+			t_cub3d *cub, char **sprite_paths)
 {
 	int	i;
 
@@ -29,13 +30,15 @@ static int	parse_sprite_paths(char *trimmed, char **parsed_file, t_cub3d *cub, c
 	i = 0;
 	while (i < SPRITE_ANIMATION_FRAMES)
 	{
-		cub->txt.sprite_paths[i] = store_texture_path(trimmed, parsed_file, sprite_paths[i], cub);
+		cub->txt.sprite_paths[i] = store_texture_path(trimmed,
+				parsed_file, sprite_paths[i], cub);
 		i++;
 	}
 	return (1);
 }
 
-void	store_sprite_textures(char *trimmed, char **parsed_file, t_cub3d *cub, char *sprite_str)
+void	store_sprite_textures(char *trimmed, char **parsed_file,
+			t_cub3d *cub, char *sprite_str)
 {
 	char	**sprite_paths;
 	char	*trimmed_sprite;

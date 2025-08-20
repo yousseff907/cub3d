@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 21:48:38 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 22:08:44 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -343,7 +343,8 @@ int			validate_sprites(t_cub3d *cub);
 int			count_sprites(t_cub3d *cub);
 void		calculate_sprite_distances(t_cub3d *cub);
 void		sort_sprites_by_distance(t_cub3d *cub);
-void		store_sprite_textures(char *trimmed, char **parsed_file, t_cub3d *cub, char *sprite_str);
+void		store_sprite_textures(char *trimmed, char **parsed_file,
+			t_cub3d *cub, char *sprite_str);
 void		render_single_sprite(t_cub3d *cub, t_sprite *sprite);
 int			has_line_of_sight(t_cub3d *cub, double sprite_x, double sprite_y);
 

@@ -6,12 +6,12 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:54:55 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 21:33:59 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 22:04:48 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-;
+
 int	key_press(int keycode, t_cub3d *cub)
 {
 	if (keycode == ESC_KEY)
