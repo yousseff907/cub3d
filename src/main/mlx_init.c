@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 23:41:49 by odana             #+#    #+#             */
-/*   Updated: 2025/08/15 00:17:17 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 14:49:16 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	create_image(t_cub3d *cub)
 	if (!cub->gfx.img_data)
 		cleanup_exit(cub, "Error: Failed to get image data", 1);
 }
+
 void	cleanup_exit(t_cub3d *cub, char *msg, int exit_code)
 {
 	ft_putendl_fd(msg, STDERR_FILENO);

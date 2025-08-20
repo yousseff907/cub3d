@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_update.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 09:25:11 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 09:25:21 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 14:53:24 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	calculate_sprite_distances(t_cub3d *cub)
 	i = 0;
 	while (i < cub->sprite_mgr.sprite_count)
 	{
-		calculate_single_sprite_distance(&cub->sprite_mgr.sprites[i], 
+		calculate_single_sprite_distance(&cub->sprite_mgr.sprites[i],
 			&cub->cam);
 		i++;
 	}
@@ -71,9 +71,9 @@ void	sort_sprites_by_distance(t_cub3d *cub)
 		j = 0;
 		while (j < cub->sprite_mgr.sprite_count - i - 1)
 		{
-			if (cub->sprite_mgr.sprites[j].distance < 
-				cub->sprite_mgr.sprites[j + 1].distance)
-				swap_sprites(&cub->sprite_mgr.sprites[j], 
+			if (cub->sprite_mgr.sprites[j].distance
+				< cub->sprite_mgr.sprites[j + 1].distance)
+				swap_sprites(&cub->sprite_mgr.sprites[j],
 					&cub->sprite_mgr.sprites[j + 1]);
 			j++;
 		}
