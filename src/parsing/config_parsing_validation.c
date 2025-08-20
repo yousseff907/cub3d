@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_parsing_validation.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:59:17 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 10:08:04 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 14:05:37 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ char	*store_texture_path(char *path_str, t_cub3d *cub)
 
 static void	store_color(t_cub3d *cub, char *color_str, int *color)
 {
-	char	**rgb;
-	int		r, g, b;
-	char	*trimmed_color;
+	char		**rgb;
+	long long	rgb_arr[3];
+	char		*trimmed_color;
 	
 	trimmed_color = trim_whitespace(color_str);
 	if (!trimmed_color)
@@ -63,16 +63,14 @@ static void	store_color(t_cub3d *cub, char *color_str, int *color)
 		free_split(rgb);
 		cleanup_exit(cub, "Error: Invalid color format", 1);
 	}
-	r = ft_atoi(rgb[0]);
-	g = ft_atoi(rgb[1]);
-	b = ft_atoi(rgb[2]);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-	{
-		free(trimmed_color);
-		free_split(rgb);
-		cleanup_exit(cub, "Error: RGB values must be 0-255", 1);
-	}
-	*color = (r << 16) | (g << 8) | b;
+	rgb_arr[0] = ft_atoll(rgb[0]);
+	rgb_arr[1] = ft_atoll(rgb[1]);
+	rgb_arr[2] = ft_atoll(rgb[2]);
+	if (rgb_arr[0] < 0 || rgb_arr[0] > 255 || rgb_arr[1] < 0 || rgb_arr[1] > 255
+		|| rgb_arr[2] < 0 || rgb_arr[2] > 255)
+		return (free(trimmed_color), free_split(rgb),
+				cleanup_exit(cub, "Error: RGB values must be 0-255", 1));
+	*color = (rgb_arr[0] << 16) | (rgb_arr[1] << 8) | rgb_arr[2];
 	return (free(trimmed_color), free_split(rgb));
 }
 
