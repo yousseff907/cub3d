@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 19:29:06 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 09:11:59 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:53:00 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ static double	wall_dist(t_ray *ray)
 	double	perp_wall_dist;
 
 	if (ray->side == 0)
-		perp_wall_dist = (ray->map_x - ray->pos_x + (1 - ray->step_x) / 2.0) / ray->dir_x;
+		perp_wall_dist = (ray->map_x - ray->pos_x
+				+ (1 - ray->step_x) / 2.0) / ray->dir_x;
 	else
-		perp_wall_dist = (ray->map_y - ray->pos_y + (1 - ray->step_y) / 2.0) / ray->dir_y;
+		perp_wall_dist = (ray->map_y - ray->pos_y
+				+ (1 - ray->step_y) / 2.0) / ray->dir_y;
 	return (perp_wall_dist);
 }
 
@@ -56,10 +58,10 @@ static int	ray_hit_wall(t_ray *ray, t_cub3d *cub)
 	char	cell;
 	t_door	*door;
 
-	if (ray->map_y < 0 || ray->map_y >= cub->map.height || 
-		ray->map_x < 0 || ray->map_x >= (int)ft_strlen(cub->map.grid[ray->map_y]))
+	if (ray->map_y < 0 || ray->map_y >= cub->map.height
+		|| ray->map_x < 0
+		|| ray->map_x >= (int)ft_strlen(cub->map.grid[ray->map_y]))
 		return (1);
-	
 	cell = cub->map.grid[ray->map_y][ray->map_x];
 	if (cell == '1' || is_space(cell))
 		return (1);
@@ -96,4 +98,3 @@ double	dda(t_ray *ray, t_cub3d *cub)
 	}
 	return (wall_dist(ray));
 }
-

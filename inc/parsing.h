@@ -6,14 +6,14 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:17:14 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 14:35:54 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 16:57:10 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H
 
-typedef struct s_cub3d t_cub3d;
+typedef struct s_cub3d	t_cub3d;
 
 typedef struct s_position
 {

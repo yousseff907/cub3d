@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 16:27:48 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 16:56:47 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,12 +89,12 @@ typedef enum e_door_state
 
 typedef struct s_door
 {
-	int			x;
-	int			y;
+	int				x;
+	int				y;
 	t_door_state	state;
-	double		open_progress;
-	int			orientation;
-	int			frames_since_trigger;
+	double			open_progress;
+	int				orientation;
+	int				frames_since_trigger;
 }	t_door;
 
 typedef struct s_door_manager
@@ -247,13 +247,13 @@ typedef struct s_keys
 
 typedef struct s_cub3d
 {
-	t_door_manager	door_mgr;
+	t_door_manager		door_mgr;
 	t_sprite_manager	sprite_mgr;
-	t_graphics		gfx;
-	t_textures		txt;
-	t_camera		cam;
-	t_map			map;
-	t_keys			keys;
+	t_graphics			gfx;
+	t_textures			txt;
+	t_camera			cam;
+	t_map				map;
+	t_keys				keys;
 }	t_cub3d;
 
 typedef struct s_wall_draw
@@ -266,85 +266,86 @@ typedef struct s_wall_draw
 	double	step;
 }	t_wall_draw;
 
-
-void	init_cub3d(t_cub3d *cub);
+void		init_cub3d(t_cub3d *cub);
 
 // MLX setup functions
-void	create_mlx(t_cub3d *cub);
-void	create_image(t_cub3d *cub);
-void	load_wall_textures(t_cub3d *cub);
-void	load_wall_textures_2(t_cub3d *cub);
-void	load_textures(t_cub3d *cub);
+void		create_mlx(t_cub3d *cub);
+void		create_image(t_cub3d *cub);
+void		load_wall_textures(t_cub3d *cub);
+void		load_wall_textures_2(t_cub3d *cub);
+void		load_textures(t_cub3d *cub);
 
 // Player setup functions
 
-void	setup_player_position(t_cub3d *cub);
-void	init_player_direction(t_cub3d *cub);
+void		setup_player_position(t_cub3d *cub);
+void		init_player_direction(t_cub3d *cub);
 
 // Cleanup functions
-void	cleanup_cub3d(t_cub3d *cub);
-int		close_window(t_cub3d *cub);
-void	cleanup_exit(t_cub3d *cub, char *msg, int exit_code);
+void		cleanup_cub3d(t_cub3d *cub);
+int			close_window(t_cub3d *cub);
+void		cleanup_exit(t_cub3d *cub, char *msg, int exit_code);
 
 // Raycasting
-double	dda(t_ray *ray, t_cub3d *cub);
+double		dda(t_ray *ray, t_cub3d *cub);
 
 // Drawing functions
-void	draw_ceiling(t_graphics *gfx, int x, int end, int color);
-void	draw_floor(t_graphics *gfx, int x, int start, int color);
-void	put_pixel(t_graphics *gfx, int x, int y, int color);
-void	draw_wall_column(t_graphics *gfx, int screen_x,
-			t_ray *ray, t_textures *txt);
+void		draw_ceiling(t_graphics *gfx, int x, int end, int color);
+void		draw_floor(t_graphics *gfx, int x, int start, int color);
+void		put_pixel(t_graphics *gfx, int x, int y, int color);
+void		draw_wall_column(t_graphics *gfx, int screen_x,
+				t_ray *ray, t_textures *txt);
 
 // Movement
-int		key_release(int keycode, t_cub3d *cub);
-int		key_press(int keycode, t_cub3d *cub);
-int		game_loop(t_cub3d *cub);
-void	move_forward(t_cub3d *cub);
-void	move_backward(t_cub3d *cub);
-void	move_left(t_cub3d *cub);
-void	move_right(t_cub3d *cub);
-int		mouse_move(int x, int y, t_cub3d *cub);
+int			key_release(int keycode, t_cub3d *cub);
+int			key_press(int keycode, t_cub3d *cub);
+int			game_loop(t_cub3d *cub);
+void		move_forward(t_cub3d *cub);
+void		move_backward(t_cub3d *cub);
+void		move_left(t_cub3d *cub);
+void		move_right(t_cub3d *cub);
+int			mouse_move(int x, int y, t_cub3d *cub);
 
 // Rendering
-void	render_frame(t_cub3d *cub);
+void		render_frame(t_cub3d *cub);
 
 // Texture functions
 
-int		get_pixel_texture(char *tex_data, int tex_x, int tex_y,
-			int line_length);
-int		calculate_texture(t_ray *ray);
-char	*get_wall_data(t_ray *ray, t_textures *txt, int *line_length);
-void	nothing(void);
+int			get_pixel_texture(char *tex_data, int tex_x, int tex_y,
+				int line_length);
+int			calculate_texture(t_ray *ray);
+char		*get_wall_data(t_ray *ray, t_textures *txt, int *line_length);
+void		nothing(void);
 
 // Door system
 
-void	init_door_system(t_cub3d *cub);
-void	update_doors(t_cub3d *cub);
-void	cleanup_doors(t_cub3d *cub);
+void		init_door_system(t_cub3d *cub);
+void		update_doors(t_cub3d *cub);
+void		cleanup_doors(t_cub3d *cub);
 
-int		count_doors(t_cub3d *cub);
-t_door	*find_door(t_cub3d *cub, int x, int y);
-int		can_pass(t_cub3d *cub, int x, int y);
-int		block_movement(t_cub3d *cub, int x, int y);
+int			count_doors(t_cub3d *cub);
+t_door		*find_door(t_cub3d *cub, int x, int y);
+int			can_pass(t_cub3d *cub, int x, int y);
+int			block_movement(t_cub3d *cub, int x, int y);
 
-int		calculate_door_tex_x(t_door *door, t_ray *ray);
-char	*get_door_wall_texture(t_ray *ray, t_textures *txt, int *line_length);
-void	draw_door_column(t_cub3d *cub, int screen_x, t_ray *ray, t_door *door);
+int			calculate_door_tex_x(t_door *door, t_ray *ray);
+char		*get_door_wall_texture(t_ray *ray, t_textures *txt,
+				int *line_length);
+void		draw_door_column(t_cub3d *cub, int screen_x, t_ray *ray,
+				t_door *door);
 
 // Sprite system
 
-void	init_sprite_system(t_cub3d *cub);
-void	update_sprites(t_cub3d *cub);
-void	render_sprites(t_cub3d *cub);
-void	cleanup_sprites(t_cub3d *cub);
-int		validate_sprites(t_cub3d *cub);
-int		count_sprites(t_cub3d *cub);
-void	calculate_sprite_distances(t_cub3d *cub);
-void	sort_sprites_by_distance(t_cub3d *cub);
-void	store_sprite_textures(t_cub3d *cub, char *sprite_str);
-void	render_single_sprite(t_cub3d *cub, t_sprite *sprite);
-int		has_line_of_sight(t_cub3d *cub, double sprite_x, double sprite_y);
+void		init_sprite_system(t_cub3d *cub);
+void		update_sprites(t_cub3d *cub);
+void		render_sprites(t_cub3d *cub);
+void		cleanup_sprites(t_cub3d *cub);
+int			validate_sprites(t_cub3d *cub);
+int			count_sprites(t_cub3d *cub);
+void		calculate_sprite_distances(t_cub3d *cub);
+void		sort_sprites_by_distance(t_cub3d *cub);
+void		store_sprite_textures(t_cub3d *cub, char *sprite_str);
+void		render_single_sprite(t_cub3d *cub, t_sprite *sprite);
+int			has_line_of_sight(t_cub3d *cub, double sprite_x, double sprite_y);
 
 // Minimap system
 
@@ -355,7 +356,8 @@ int			get_player_dot_size(int scale);
 int			get_direction_length(int scale);
 int			is_player_in_bounds(t_cub3d *cub);
 
-void		draw_minimap_pixel(t_graphics *gfx, int x, int y, t_minimap *minimap);
+void		draw_minimap_pixel(t_graphics *gfx, int x, int y,
+				t_minimap *minimap);
 void		draw_minimap_square(t_graphics *gfx, t_minimap *minimap);
 void		draw_minimap(t_cub3d *cub);
 
