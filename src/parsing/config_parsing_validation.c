@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:59:17 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 14:05:37 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 14:37:21 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ char	*store_texture_path(char *path_str, t_cub3d *cub)
 static void	store_color(t_cub3d *cub, char *color_str, int *color)
 {
 	char		**rgb;
-	long long	rgb_arr[3];
+	long long	rgb_arr[4];
 	char		*trimmed_color;
-	
+
+	rgb_arr[3] = 0;
 	trimmed_color = trim_whitespace(color_str);
 	if (!trimmed_color)
 		cleanup_exit(cub, "Error: Trimming failed", 1);
@@ -63,9 +64,9 @@ static void	store_color(t_cub3d *cub, char *color_str, int *color)
 		free_split(rgb);
 		cleanup_exit(cub, "Error: Invalid color format", 1);
 	}
-	rgb_arr[0] = ft_atoll(rgb[0]);
-	rgb_arr[1] = ft_atoll(rgb[1]);
-	rgb_arr[2] = ft_atoll(rgb[2]);
+	rgb_arr[0] = custom_atoll(rgb[0], rgb_arr[3]);
+	rgb_arr[1] = custom_atoll(rgb[1], rgb_arr[3]);
+	rgb_arr[2] = custom_atoll(rgb[2], rgb_arr[3]);
 	if (rgb_arr[0] < 0 || rgb_arr[0] > 255 || rgb_arr[1] < 0 || rgb_arr[1] > 255
 		|| rgb_arr[2] < 0 || rgb_arr[2] > 255)
 		return (free(trimmed_color), free_split(rgb),

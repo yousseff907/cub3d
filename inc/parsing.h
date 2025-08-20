@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:17:14 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 09:43:56 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 14:35:54 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,7 @@ t_position	*find_all_empty_positions(t_cub3d *cub);
 t_position	*create_position_node(int x, int y);
 void		add_position_to_list(t_position **head, int x, int y);
 void		free_position_list(t_position *head);
+
+long long	custom_atoll(const char *str, long long result);
 
 #endif

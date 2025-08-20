@@ -1,12 +1,22 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: yitani <yitani@student.42.fr>              +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/08/20 14:21:54 by yitani            #+#    #+#              #
+#    Updated: 2025/08/20 14:22:05 by yitani           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		= cub3D
 
-# Directories
 SRC_DIR		= src
 INC_DIR		= inc
 LIBFT_DIR	= libft
 MLX_DIR		= minilibx-linux
 
-# Source files (just filenames, paths added automatically)
 MAIN_SRC	= main.c cub_init.c mlx_init.c player_init.c direction.c cleanup.c \
 		  door_init.c door_manage.c
 
@@ -18,7 +28,7 @@ RENDERING_SRC	= dda.c draw.c texture.c render.c helpers.c \
 PARSING_SRC	= main_parsing.c config_parsing_validation.c map_parsing.c \
 		  map_floodfill.c map_validation_loops.c parsing_helpers.c \
 		  parsing_utils.c validation_helpers.c file_reading.c position_lst.c \
-		  parse_sprite.c
+		  parse_sprite.c custom_atoll.c
 
 MINIMAP_SRC = minimap.c draw_minimap.c minimap_border.c minimap_direction.c \
 			minimap_player.c minimap_utils.c
