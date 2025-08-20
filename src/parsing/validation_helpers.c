@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validation_helpers.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:21:19 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 10:08:07 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:37:14 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	validate_input(int argc, char *argv[], t_cub3d *cub)
 	if (argc == 1 || argc > 2)
 		cleanup_exit(cub, "Usage: ./cub3D <file>.cub", 1);
 	if (!is_cub_file(argv[1]))
-		cleanup_exit(cub, "Error: use a .cub file", 1);	
+		cleanup_exit(cub, "Error: use a .cub file", 1);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		cleanup_exit(cub, "Error: couldn't open file", 1);
@@ -39,7 +39,7 @@ void	validate_input(int argc, char *argv[], t_cub3d *cub)
 int	is_valid_char(char c)
 {
 	if (c == 'N' || c == 'E' || c == 'W' || c == 'S' || c == '1'
-			|| c == '0' || c == 'D' || c == 'X' || is_space(c))
+		|| c == '0' || c == 'D' || c == 'X' || is_space(c))
 		return (1);
 	return (0);
 }

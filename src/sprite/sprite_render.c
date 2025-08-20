@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 09:27:44 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 09:27:45 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:10:28 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static t_sprite_draw	calculate_sprite_transform(t_sprite *sprite, 
+static t_sprite_draw	calculate_sprite_transform(t_sprite *sprite,
 	t_camera *cam)
 {
 	t_sprite_draw	draw;
@@ -22,17 +22,17 @@ static t_sprite_draw	calculate_sprite_transform(t_sprite *sprite,
 	draw.sprite_y = sprite->y - cam->pos_y;
 	inv_det = 1.0 / (cam->plane_x * cam->dir_y - cam->dir_x * cam->plane_y);
 	draw.inv_det = inv_det;
-	draw.transform_x = inv_det * (cam->dir_y * draw.sprite_x 
-		- cam->dir_x * draw.sprite_y);
-	draw.transform_y = inv_det * (-cam->plane_y * draw.sprite_x 
-		+ cam->plane_x * draw.sprite_y);
+	draw.transform_x = inv_det * (cam->dir_y * draw.sprite_x
+			- cam->dir_x * draw.sprite_y);
+	draw.transform_y = inv_det * (-cam->plane_y * draw.sprite_x
+			+ cam->plane_x * draw.sprite_y);
 	return (draw);
 }
 
 static void	calculate_sprite_screen_params(t_sprite_draw *draw)
 {
-	draw->sprite_screen_x = (int)((WIDTH / 2) * (1 + draw->transform_x 
-		/ draw->transform_y));
+	draw->sprite_screen_x = (int)((WIDTH / 2) * (1 + draw->transform_x
+				/ draw->transform_y));
 	draw->sprite_height = abs((int)(HEIGHT / draw->transform_y));
 	draw->sprite_width = abs((int)(HEIGHT / draw->transform_y));
 	draw->draw_start_y = -draw->sprite_height / 2 + HEIGHT / 2;
@@ -61,18 +61,19 @@ static void	render_sprite_column(t_cub3d *cub, t_sprite_draw *draw,
 	int	tex_y;
 	int	color;
 
-	tex_x = (int)(256 * (stripe - (-draw->sprite_width / 2 
-		+ draw->sprite_screen_x)) * TEX_WIDTH / draw->sprite_width) / 256;
-	if (draw->transform_y > 0 && stripe > 0 && stripe < WIDTH 
+	tex_x = (int)(256 * (stripe - (-draw->sprite_width / 2
+					+ draw->sprite_screen_x)) * TEX_WIDTH / draw->sprite_width)
+		/ 256;
+	if (draw->transform_y > 0 && stripe > 0 && stripe < WIDTH
 		&& draw->transform_y < 1000)
 	{
 		y = draw->draw_start_y;
 		while (y < draw->draw_end_y)
 		{
-			tex_y = (((y * 256 - HEIGHT * 128 + draw->sprite_height * 128) 
-				* TEX_HEIGHT) / draw->sprite_height) / 256;
-			color = get_pixel_texture(cub->txt.sprite_data[frame], 
-				tex_x, tex_y, cub->txt.sprite_length[frame]);
+			tex_y = (((y * 256 - HEIGHT * 128 + draw->sprite_height * 128)
+						* TEX_HEIGHT) / draw->sprite_height) / 256;
+			color = get_pixel_texture(cub->txt.sprite_data[frame],
+					tex_x, tex_y, cub->txt.sprite_length[frame]);
 			if ((color & 0x00FFFFFF) != 0)
 				put_pixel(&cub->gfx, stripe, y, color);
 			y++;

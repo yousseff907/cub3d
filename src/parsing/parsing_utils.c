@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:53:09 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/15 00:31:55 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 16:32:54 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*trim_whitespace(char *str)
 	int		end;
 	char	*result;
 	int		len;
-	
+
 	start = 0;
 	while (str[start] && is_space(str[start]))
 		start++;

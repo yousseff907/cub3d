@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_helpers.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:21:16 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 10:06:31 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:36:42 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ int	is_config_line(char *line)
 			|| ft_strncmp(line + i, "C ", 2) == 0
 			|| ft_strncmp(line + i, "SP ", 3) == 0)
 			return (1);
-		break;
+		break ;
 	}
 	return (0);
 }
 
 int	is_map_line(char *line)
 {
-    return (!is_empty_line(line) && !is_config_line(line));
+	return (!is_empty_line(line) && !is_config_line(line));
 }

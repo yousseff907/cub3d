@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 09:40:15 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 14:18:35 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 16:36:09 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	validate_sprites(t_cub3d *cub)
 	while (i < SPRITE_ANIMATION_FRAMES)
 	{
 		if (cub->txt.sprite_paths[i])
-			break;
+			break ;
 		i++;
 	}
 	if (i < SPRITE_ANIMATION_FRAMES)
@@ -68,7 +68,10 @@ int	validate_sprites(t_cub3d *cub)
 		while (i < SPRITE_ANIMATION_FRAMES)
 		{
 			if (!cub->txt.sprite_paths[i])
-				return (ft_putendl_fd("Error: Incomplete sprite textures (SP)", 2), 0);
+			{
+				ft_putendl_fd("Error: Incomplete sprite textures (SP)", 2);
+				return (0);
+			}
 			i++;
 		}
 	}

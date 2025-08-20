@@ -6,7 +6,7 @@
 #    By: yitani <yitani@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/20 14:21:54 by yitani            #+#    #+#              #
-#    Updated: 2025/08/20 14:22:05 by yitani           ###   ########.fr        #
+#    Updated: 2025/08/20 16:17:14 by yitani           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ PARSING_SRC	= main_parsing.c config_parsing_validation.c map_parsing.c \
 		  parse_sprite.c custom_atoll.c
 
 MINIMAP_SRC = minimap.c draw_minimap.c minimap_border.c minimap_direction.c \
-			minimap_player.c minimap_utils.c
+			minimap_player.c minimap_utils.c draw_helpers.c
 
 SPRITE_SRC = sprite_init.c sprite_update.c sprite_render.c sprite.c line_of_sight.c \
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 22:57:12 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 09:30:18 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:20:32 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static void	cleanup_map(t_cub3d *cub)
 void	cleanup_cub3d(t_cub3d *cub)
 {
 	if (!cub)
-		return;
+		return ;
 	cleanup_textures(cub);
 	cleanup_map(cub);
 	cleanup_doors(cub);

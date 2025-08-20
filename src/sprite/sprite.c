@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 09:28:08 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 10:18:11 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:11:56 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void	render_sprites(t_cub3d *cub)
 	i = 0;
 	while (i < cub->sprite_mgr.sprite_count)
 	{
-		if (has_line_of_sight(cub, cub->sprite_mgr.sprites[i].x, 
-			cub->sprite_mgr.sprites[i].y))
+		if (has_line_of_sight(cub, cub->sprite_mgr.sprites[i].x,
+				cub->sprite_mgr.sprites[i].y))
 			render_single_sprite(cub, &cub->sprite_mgr.sprites[i]);
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_floodfill.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/18 15:44:11 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 01:22:33 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:35:24 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ int	validate_all_empty_positions(t_cub3d *cub)
 			free_position_list(empty_positions);
 			return (0);
 		}
-		if (!flood_fill_escape_check(map_copy, current->x, current->y, cub->map.height))
+		if (!flood_fill_escape_check(map_copy, current->x, current->y,
+				cub->map.height))
 			all_contained = 0;
 		free_split(map_copy);
 		current = current->next;
 	}
-	free_position_list(empty_positions);
-	return (all_contained);
+	return (free_position_list(empty_positions), all_contained);
 }
 
 int	validate_map_flood_fill(t_cub3d *cub)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_draw.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 00:31:06 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 01:52:05 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:25:42 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,20 @@ static void	draw_door_texture(t_cub3d *cub, t_wall_draw wall, int tex_x)
 	{
 		tex_y = (int)tex_pos & (TEX_HEIGHT - 1);
 		tex_pos += wall.step;
-		color = get_pixel_texture(cub->txt.door_data, tex_x, tex_y, 
-			cub->txt.door_length);
+		color = get_pixel_texture(cub->txt.door_data, tex_x, tex_y,
+				cub->txt.door_length);
 		put_pixel(&cub->gfx, wall.screen_x, y, color);
 		y++;
 	}
 }
 
-static void	draw_transparent_area(t_cub3d *cub, int screen_x, int start, int end)
+static void	draw_transparent_area(t_cub3d *cub, int screen_x,
+		int start, int end)
 {
 	int	y;
 	int	bg_color;
 
-	// Simple background color for open door area (you can make this more complex later)
-	bg_color = 0x202020; // Dark gray to simulate depth
+	bg_color = 0x202020;
 	y = start;
 	while (y < end)
 	{
@@ -71,26 +71,17 @@ void	draw_door_column(t_cub3d *cub, int screen_x, t_ray *ray, t_door *door)
 	wall = init_door_draw(ray);
 	wall.screen_x = screen_x;
 	tex_x = calculate_texture(ray);
-	
-	// Calculate how much door is visible
-	door_end = wall.draw_start + (int)(wall.line_height * (1.0 - door->open_progress));
+	door_end = wall.draw_start + (int)(wall.line_height
+			* (1.0 - door->open_progress));
 	if (door_end > wall.draw_end)
 		door_end = wall.draw_end;
-	
-	// Draw ceiling
 	draw_ceiling(&cub->gfx, screen_x, wall.draw_start, cub->txt.ceiling_color);
-	
-	// Draw door texture (only the visible part)
 	if (door->open_progress < 1.0 && door_end > wall.draw_start)
 	{
 		wall.draw_end = door_end;
 		draw_door_texture(cub, wall, tex_x);
 	}
-	
-	// Draw the open area behind the door
 	if (door->open_progress > 0.0 && door_end < wall.draw_end)
 		draw_transparent_area(cub, screen_x, door_end, wall.draw_end);
-	
-	// Draw floor
 	draw_floor(&cub->gfx, screen_x, wall.draw_end, cub->txt.floor_color);
 }

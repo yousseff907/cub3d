@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_of_sight.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 10:13:34 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 10:19:43 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:12:13 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	has_line_of_sight(t_cub3d *cub, double sprite_x, double sprite_y)
 	int		steps;
 	int		i;
 
-	distance = sqrt(pow(sprite_x - cub->cam.pos_x, 2) + pow(sprite_y - cub->cam.pos_y, 2));
+	distance = sqrt(pow(sprite_x - cub->cam.pos_x, 2)
+			+ pow(sprite_y - cub->cam.pos_y, 2));
 	steps = (int)(distance / 0.1);
 	if (steps == 0)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 15:57:25 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 16:27:48 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -363,5 +363,7 @@ void		draw_minimap_border(t_graphics *gfx, t_minimap *minimap);
 
 void		draw_player_on_minimap(t_cub3d *cub);
 void		draw_player_direction(t_cub3d *cub);
+
+void		draw_square_line(t_graphics *gfx, t_minimap *minimap);
 
 #endif

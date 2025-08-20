@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_parsing.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:58:16 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 02:36:27 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:34:37 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,3 @@ void	file_content_identification(int argc, char **argv, t_cub3d *cub)
 		cleanup_exit(cub, "Error: Map Validation Failed", 1);
 	convert_spaces_to_walls(cub);
 }
-

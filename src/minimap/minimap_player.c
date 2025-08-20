@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_player.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 08:09:48 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 08:09:58 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:13:25 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static void	draw_dot_line(t_graphics *gfx, t_minimap *minimap)
 			minimap->color = 0xFF0000;
 			minimap->pixel_x = minimap->center_x + minimap->offset_x;
 			minimap->pixel_y = minimap->center_y + j;
-			draw_minimap_pixel(gfx, minimap->pixel_x, minimap->pixel_y, minimap);
+			draw_minimap_pixel(gfx, minimap->pixel_x, minimap->pixel_y,
+				minimap);
 		}
 		j++;
 	}

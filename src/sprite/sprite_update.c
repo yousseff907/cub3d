@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 09:25:11 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 14:53:24 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 16:05:12 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,11 @@ void	calculate_sprite_distances(t_cub3d *cub)
 	}
 }
 
-static void	swap_sprites(t_sprite *a, t_sprite *b)
-{
-	t_sprite	temp;
-
-	temp = *a;
-	*a = *b;
-	*b = temp;
-}
-
 void	sort_sprites_by_distance(t_cub3d *cub)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
+	t_sprite	temp;
 
 	if (!cub->sprite_mgr.sprites || cub->sprite_mgr.sprite_count <= 1)
 		return ;
@@ -73,8 +65,11 @@ void	sort_sprites_by_distance(t_cub3d *cub)
 		{
 			if (cub->sprite_mgr.sprites[j].distance
 				< cub->sprite_mgr.sprites[j + 1].distance)
-				swap_sprites(&cub->sprite_mgr.sprites[j],
-					&cub->sprite_mgr.sprites[j + 1]);
+			{
+				temp = cub->sprite_mgr.sprites[j];
+				cub->sprite_mgr.sprites[j] = cub->sprite_mgr.sprites[j + 1];
+				cub->sprite_mgr.sprites[j + 1] = temp;
+			}
 			j++;
 		}
 		i++;

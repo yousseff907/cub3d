@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sprite_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 09:24:53 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 10:11:43 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:11:31 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ static void	find_and_init_sprites(t_cub3d *cub)
 		{
 			if (cub->map.grid[i][j] == 'X')
 			{
-				init_single_sprite(&cub->sprite_mgr.sprites[sprite_index], j, i);
+				init_single_sprite(&cub->sprite_mgr.sprites[sprite_index],
+					j, i);
 				cub->map.grid[i][j] = '0';
 				sprite_index++;
 			}
@@ -76,8 +77,8 @@ static int	allocate_sprites(t_cub3d *cub)
 		cub->sprite_mgr.sprites = NULL;
 		return (1);
 	}
-	cub->sprite_mgr.sprites = malloc(sizeof(t_sprite) * 
-		cub->sprite_mgr.sprite_count);
+	cub->sprite_mgr.sprites = malloc(sizeof(t_sprite)
+			* cub->sprite_mgr.sprite_count);
 	if (!cub->sprite_mgr.sprites)
 		return (0);
 	return (1);

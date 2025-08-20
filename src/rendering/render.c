@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 18:58:53 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 10:11:02 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:23:31 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_ray	cast_ray(t_camera *cam, t_cub3d *cub, int screen_x)
 {
 	t_ray	ray;
-	double camera_x;
+	double	camera_x;
 
 	camera_x = 2.0 * screen_x / WIDTH - 1.0;
 	ray.pos_x = cam->pos_x;
@@ -52,10 +52,7 @@ void	render_frame(t_cub3d *cub)
 	t_door	*door;
 
 	if (!cub->gfx.img_ptr)
-	{
-		printf("ERROR: No image buffer allocated!\n");
-		return;
-	}
+		return (printf("ERROR: No image buffer allocated!\n"), nothing());
 	x = 0;
 	while (x < WIDTH)
 	{
@@ -71,7 +68,6 @@ void	render_frame(t_cub3d *cub)
 	draw_minimap(cub);
 	draw_player_on_minimap(cub);
 	draw_player_direction(cub);
-	mlx_put_image_to_window(cub->gfx.mlx_ptr, cub->gfx.win_ptr, cub->gfx.img_ptr, 0, 0);
+	mlx_put_image_to_window(cub->gfx.mlx_ptr, cub->gfx.win_ptr,
+		cub->gfx.img_ptr, 0, 0);
 }
-
-

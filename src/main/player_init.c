@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/15 11:00:39 by odana             #+#    #+#             */
-/*   Updated: 2025/08/15 16:18:50 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 16:20:21 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	find_player_in_row(t_cub3d *cub, int y)
 void	setup_player_position(t_cub3d *cub)
 {
 	int	i;
-	
+
 	if (!cub->map.grid)
 		return ;
 	i = 0;

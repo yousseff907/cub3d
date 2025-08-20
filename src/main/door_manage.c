@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_manage.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 00:33:30 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 00:37:27 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:22:00 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ static void	handle_door_trigger(t_door *door, double distance)
 	{
 		if (door->state == DOOR_CLOSED)
 			door->state = DOOR_OPENING;
-		door->frames_since_trigger = 0; 
+		door->frames_since_trigger = 0;
 	}
 	else
 	{
 		door->frames_since_trigger++;
-		if (door->frames_since_trigger > DOOR_AUTO_CLOSE_FRAMES 
+		if (door->frames_since_trigger > DOOR_AUTO_CLOSE_FRAMES
 			&& door->state == DOOR_OPEN)
 			door->state = DOOR_CLOSING;
 	}
@@ -53,8 +53,8 @@ static void	update_single_door(t_cub3d *cub, t_door *door)
 {
 	double	dx;
 	double	dy;
-    double  distance;
-    
+	double	distance;
+
 	dx = cub->cam.pos_x - (door->x + 0.5);
 	dy = cub->cam.pos_y - (door->y + 0.5);
 	distance = sqrt(dx * dx + dy * dy);

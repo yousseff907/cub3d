@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_render.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 00:23:03 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 00:31:57 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:25:58 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,22 +83,4 @@ int	calculate_door_tex_x(t_door *door, t_ray *ray)
 		return (-1);
 	tex_x = (int)(adjusted_hit * TEX_WIDTH);
 	return (apply_texture_flip(tex_x, ray));
-}
-
-char	*get_door_wall_texture(t_ray *ray, t_textures *txt, int *line_length)
-{
-	if (ray->side == 0)
-	{
-		if (ray->dir_x > 0)
-			return (*line_length = txt->east_length, txt->east_data);
-		else
-			return (*line_length = txt->west_length, txt->west_data);
-	}
-	else
-	{
-		if (ray->dir_y > 0)
-			return (*line_length = txt->south_length, txt->south_data);
-		else
-			return (*line_length = txt->north_length, txt->north_data);
-	}
 }

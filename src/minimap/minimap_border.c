@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_border.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 02:14:31 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 08:14:45 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:13:49 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static void	draw_border_horizontal(t_graphics *gfx, 
+static void	draw_border_horizontal(t_graphics *gfx,
 		t_minimap *minimap, int y)
 {
 	int	i;
@@ -25,7 +25,7 @@ static void	draw_border_horizontal(t_graphics *gfx,
 	}
 }
 
-static void	draw_border_vertical(t_graphics *gfx, 
+static void	draw_border_vertical(t_graphics *gfx,
 		t_minimap *minimap, int x)
 {
 	int	i;
@@ -45,4 +45,3 @@ void	draw_minimap_border(t_graphics *gfx, t_minimap *minimap)
 	draw_border_vertical(gfx, minimap, -1);
 	draw_border_vertical(gfx, minimap, minimap->width);
 }
-

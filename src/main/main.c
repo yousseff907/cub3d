@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:20:04 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 09:31:07 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:32:41 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void	nothing(void)
 {
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_cub3d *cub;
-	
+	t_cub3d	*cub;
+
 	cub = malloc(sizeof(t_cub3d));
 	if (!cub)
 		cleanup_exit(cub, "Error: Memory allocation failed", 1);
@@ -34,11 +34,11 @@ int main(int argc, char **argv)
 	load_textures(cub);
 	render_frame(cub);
 	mlx_mouse_hide(cub->gfx.mlx_ptr, cub->gfx.win_ptr);
-	mlx_hook(cub->gfx.win_ptr, 2, 1L<<0, key_press, cub);
-	mlx_hook(cub->gfx.win_ptr, 3, 1L<<1, key_release, cub);
-	mlx_hook(cub->gfx.win_ptr, 17, 1L<<17, close_window, cub);
-	mlx_hook(cub->gfx.win_ptr, 6, 1L<<6, mouse_move, cub);
-	mlx_loop_hook(cub->gfx.mlx_ptr, game_loop, cub);	
+	mlx_hook(cub->gfx.win_ptr, 2, 1L << 0, key_press, cub);
+	mlx_hook(cub->gfx.win_ptr, 3, 1L << 1, key_release, cub);
+	mlx_hook(cub->gfx.win_ptr, 17, 1L << 17, close_window, cub);
+	mlx_hook(cub->gfx.win_ptr, 6, 1L << 6, mouse_move, cub);
+	mlx_loop_hook(cub->gfx.mlx_ptr, game_loop, cub);
 	mlx_loop(cub->gfx.mlx_ptr);
 	cleanup_cub3d(cub);
 	return (0);

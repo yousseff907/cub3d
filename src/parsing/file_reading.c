@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_reading.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:51:31 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 01:08:53 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:34:25 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**store_file(char *file_name)
 
 	row[1] = rows_count(file_name);
 	row[0] = 0;
-	map	= alloc_file(file_name);
+	map = alloc_file(file_name);
 	fd = open(file_name, O_RDONLY);
 	while (row[0] < row[1])
 	{

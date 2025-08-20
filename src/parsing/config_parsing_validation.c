@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:59:17 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 14:37:21 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 16:33:47 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	validate_texture_file(char *path)
 char	*store_texture_path(char *path_str, t_cub3d *cub)
 {
 	char	*trimmed_path;
-	
+
 	trimmed_path = trim_whitespace(path_str);
 	if (!trimmed_path)
 		cleanup_exit(cub, "Error: Memory allocation failed", 1);
@@ -43,7 +43,6 @@ char	*store_texture_path(char *path_str, t_cub3d *cub)
 		free(trimmed_path);
 		cleanup_exit(cub, "", 1);
 	}
-	
 	return (trimmed_path);
 }
 
@@ -70,7 +69,7 @@ static void	store_color(t_cub3d *cub, char *color_str, int *color)
 	if (rgb_arr[0] < 0 || rgb_arr[0] > 255 || rgb_arr[1] < 0 || rgb_arr[1] > 255
 		|| rgb_arr[2] < 0 || rgb_arr[2] > 255)
 		return (free(trimmed_color), free_split(rgb),
-				cleanup_exit(cub, "Error: RGB values must be 0-255", 1));
+			cleanup_exit(cub, "Error: RGB values must be 0-255", 1));
 	*color = (rgb_arr[0] << 16) | (rgb_arr[1] << 8) | rgb_arr[2];
 	return (free(trimmed_color), free_split(rgb));
 }
@@ -78,7 +77,7 @@ static void	store_color(t_cub3d *cub, char *color_str, int *color)
 void	store_config_line(char *line, t_cub3d *cub)
 {
 	char	*trimmed;
-	
+
 	trimmed = trim_whitespace(line);
 	if (!trimmed)
 		cleanup_exit(cub, "Error: Trimming failed", 1);
@@ -122,4 +121,3 @@ int	validate_complete_config(t_cub3d *cub)
 		return (0);
 	return (1);
 }
-

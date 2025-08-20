@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_minimap.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 08:08:42 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 08:08:55 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:27:18 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,30 +26,16 @@ void	draw_minimap_pixel(t_graphics *gfx, int x, int y, t_minimap *minimap)
 	}
 }
 
-static void	draw_square_line(t_graphics *gfx, t_minimap *minimap)
+void	draw_square_line(t_graphics *gfx, t_minimap *minimap)
 {
 	int	i;
 
 	i = 0;
 	while (i < minimap->scale)
 	{
-		draw_minimap_pixel(gfx, minimap->pixel_x + i, minimap->pixel_y, minimap);
+		draw_minimap_pixel(gfx, minimap->pixel_x + i,
+			minimap->pixel_y, minimap);
 		i++;
-	}
-}
-
-void	draw_minimap_square(t_graphics *gfx, t_minimap *minimap)
-{
-	int	j;
-
-	minimap->pixel_x = minimap->map_x * minimap->scale;
-	minimap->pixel_y = minimap->map_y * minimap->scale;
-	j = 0;
-	while (j < minimap->scale)
-	{
-		minimap->pixel_y = minimap->map_y * minimap->scale + j;
-		draw_square_line(gfx, minimap);
-		j++;
 	}
 }
 
@@ -62,7 +48,8 @@ static void	draw_map_cell(t_cub3d *cub, t_minimap *minimap)
 	if (minimap->map_x < row_length)
 	{
 		cell = cub->map.grid[minimap->map_y][minimap->map_x];
-		minimap->color = get_cell_color(cell, cub, minimap->map_x, minimap->map_y);
+		minimap->color = get_cell_color(cell, cub,
+				minimap->map_x, minimap->map_y);
 	}
 	else
 		minimap->color = 0xFFFFFF;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   door_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 00:18:29 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 02:01:15 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:23:46 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	count_doors(t_cub3d *cub)
 	}
 	return (door_count);
 }
-
 
 t_door	*find_door(t_cub3d *cub, int x, int y)
 {

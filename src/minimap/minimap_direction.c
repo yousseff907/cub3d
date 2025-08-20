@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_direction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 08:10:12 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 08:10:25 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 16:13:29 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static void	calculate_line_params(t_cub3d *cub, t_minimap *minimap)
 	dir_len = get_direction_length(minimap->scale);
 	minimap->end_x = minimap->start_x + (int)(cub->cam.dir_x * dir_len);
 	minimap->end_y = minimap->start_y + (int)(cub->cam.dir_y * dir_len);
-	if (abs(minimap->end_x - minimap->start_x) > abs(minimap->end_y - minimap->start_y))
+	if (abs(minimap->end_x - minimap->start_x)
+		> abs(minimap->end_y - minimap->start_y))
 		minimap->steps = abs(minimap->end_x - minimap->start_x);
 	else
 		minimap->steps = abs(minimap->end_y - minimap->start_y);
@@ -45,7 +46,8 @@ static void	draw_line_pixels(t_graphics *gfx, t_minimap *minimap)
 			if (minimap->pixel_y >= 0 && minimap->pixel_y < minimap->height)
 			{
 				minimap->color = 0xFF0000;
-				draw_minimap_pixel(gfx, minimap->pixel_x, minimap->pixel_y, minimap);
+				draw_minimap_pixel(gfx, minimap->pixel_x,
+					minimap->pixel_y, minimap);
 			}
 		}
 		i++;
