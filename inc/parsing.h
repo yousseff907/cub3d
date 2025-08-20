@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:17:14 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 16:57:10 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 21:49:18 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ char		*trim_whitespace(char *str);
 void		identify_type(char **parsed_file, t_cub3d *cub);
 void		file_content_identification(int argc, char **argv, t_cub3d *cub);
 
-void		store_config_line(char *line, t_cub3d *cub);
+void		store_config_line(char **parsed_file, char *line, t_cub3d *cub);
 int			validate_complete_config(t_cub3d *cub);
-char		*store_texture_path(char *path_str, t_cub3d *cub);
+char		*store_texture_path(char *trimmed, char **parsed_file, char *path_str, t_cub3d *cub);
 
 void		store_map(char **parsed_file, int start_index, t_cub3d *cub);
 char		**duplicate_map(t_cub3d *cub);

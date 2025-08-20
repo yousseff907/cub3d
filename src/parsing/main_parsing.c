@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:58:16 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 16:34:37 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 21:37:42 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	identify_type(char **parsed_file, t_cub3d *cub)
 		}
 		else if (is_config_line(parsed_file[i]))
 		{
-			store_config_line(parsed_file[i], cub);
+			store_config_line(parsed_file, parsed_file[i], cub);
 			i++;
 		}
 		else if (is_map_line(parsed_file[i]))

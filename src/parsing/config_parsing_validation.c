@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:59:17 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 16:33:47 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 21:49:38 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,24 @@ static int	validate_texture_file(char *path)
 	return (1);
 }
 
-char	*store_texture_path(char *path_str, t_cub3d *cub)
+char	*store_texture_path(char *trimmed, char **parsed_file, char *path_str, t_cub3d *cub)
 {
 	char	*trimmed_path;
 
 	trimmed_path = trim_whitespace(path_str);
 	if (!trimmed_path)
+	{
+		free(trimmed);
+		free_split(parsed_file);
 		cleanup_exit(cub, "Error: Memory allocation failed", 1);
+	}
 	if (!validate_texture_file(trimmed_path))
 	{
+		free(trimmed);
 		ft_putstr_fd("Error: Invalid or missing texture file: ", 2);
 		ft_putendl_fd(trimmed_path, 2);
 		free(trimmed_path);
+		free_split(parsed_file);
 		cleanup_exit(cub, "", 1);
 	}
 	return (trimmed_path);
@@ -74,27 +80,30 @@ static void	store_color(t_cub3d *cub, char *color_str, int *color)
 	return (free(trimmed_color), free_split(rgb));
 }
 
-void	store_config_line(char *line, t_cub3d *cub)
+void	store_config_line(char **parsed_file, char *line, t_cub3d *cub)
 {
 	char	*trimmed;
 
 	trimmed = trim_whitespace(line);
 	if (!trimmed)
+	{
+		free_split(parsed_file);
 		cleanup_exit(cub, "Error: Trimming failed", 1);
+	}
 	if (ft_strncmp(trimmed, "NO ", 3) == 0)
-		cub->txt.north_path = store_texture_path(trimmed + 3, cub);
+		cub->txt.north_path = store_texture_path(trimmed, parsed_file, trimmed + 3, cub);
 	else if (ft_strncmp(trimmed, "SO ", 3) == 0)
-		cub->txt.south_path = store_texture_path(trimmed + 3, cub);
+		cub->txt.south_path = store_texture_path(trimmed, parsed_file, trimmed + 3, cub);
 	else if (ft_strncmp(trimmed, "WE ", 3) == 0)
-		cub->txt.west_path = store_texture_path(trimmed + 3, cub);
+		cub->txt.west_path = store_texture_path(trimmed, parsed_file, trimmed + 3, cub);
 	else if (ft_strncmp(trimmed, "EA ", 3) == 0)
-		cub->txt.east_path = store_texture_path(trimmed + 3, cub);
+		cub->txt.east_path = store_texture_path(trimmed, parsed_file, trimmed + 3, cub);
 	else if (ft_strncmp(trimmed, "F ", 2) == 0)
 		store_color(cub, trimmed + 2, &cub->txt.floor_color);
 	else if (ft_strncmp(trimmed, "C ", 2) == 0)
 		store_color(cub, trimmed + 2, &cub->txt.ceiling_color);
 	else if (ft_strncmp(trimmed, "SP ", 3) == 0)
-		store_sprite_textures(cub, trimmed + 3);
+		store_sprite_textures(trimmed, parsed_file, cub, trimmed + 3);
 	else
 	{
 		free(trimmed);
