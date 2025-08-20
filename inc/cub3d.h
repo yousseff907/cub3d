@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 02:44:44 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 08:11:01 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,28 @@
 # define DOOR_ANIMATION_SPEED 0.02
 # define DOOR_PASSABLE_THRESHOLD 0.9
 
-#define MINIMAP_SIZE 200
-#define MINIMAP_MARGIN 20
-#define MINIMAP_SCALE 8
+typedef struct s_minimap
+{
+	int	scale;
+	int	margin;
+	int	width;
+	int	height;
+	int	max_size;
+	int	color;
+	int	map_x;
+	int	map_y;
+	int	pixel_x;
+	int	pixel_y;
+	int	center_x;
+	int	center_y;
+	int	dot_size;
+	int	offset_x;
+	int	start_x;
+	int	start_y;
+	int	end_x;
+	int	end_y;
+	int	steps;
+}	t_minimap;
 
 typedef enum e_door_state
 {
@@ -271,8 +290,20 @@ void	draw_door_column(t_cub3d *cub, int screen_x, t_ray *ray, t_door *door);
 
 // Minimap system
 
-void	draw_minimap(t_cub3d *cub);
-void	draw_player_on_minimap(t_cub3d *cub);
-void	draw_player_direction(t_cub3d *cub);
+t_minimap	init_minimap(t_cub3d *cub);
+
+int			get_cell_color(char cell, t_cub3d *cub, int x, int y);
+int			get_player_dot_size(int scale);
+int			get_direction_length(int scale);
+int			is_player_in_bounds(t_cub3d *cub);
+
+void		draw_minimap_pixel(t_graphics *gfx, int x, int y, t_minimap *minimap);
+void		draw_minimap_square(t_graphics *gfx, t_minimap *minimap);
+void		draw_minimap(t_cub3d *cub);
+
+void		draw_minimap_border(t_graphics *gfx, t_minimap *minimap);
+
+void		draw_player_on_minimap(t_cub3d *cub);
+void		draw_player_direction(t_cub3d *cub);
 
 #endif

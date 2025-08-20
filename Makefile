@@ -13,19 +13,22 @@ MAIN_SRC	= main.c cub_init.c mlx_init.c player_init.c direction.c cleanup.c \
 MOVEMENT_SRC	= movement.c rotate.c keyhook.c
 
 RENDERING_SRC	= dda.c draw.c texture.c render.c helpers.c \
-		  door_render.c door_utils.c door_draw.c minimap.c 
+		  door_render.c door_utils.c door_draw.c
 
 PARSING_SRC	= main_parsing.c config_parsing_validation.c map_parsing.c \
 		  map_floodfill.c map_validation_loops.c parsing_helpers.c \
 		  parsing_utils.c validation_helpers.c file_reading.c position_lst.c
 
+MINIMAP_SRC = minimap.c draw_minimap.c minimap_border.c minimap_direction.c \
+			minimap_player.c minimap_utils.c 
 # Create full paths for source files
 MAIN_SRCS	= $(addprefix $(SRC_DIR)/main/, $(MAIN_SRC))
 MOVEMENT_SRCS	= $(addprefix $(SRC_DIR)/movement/, $(MOVEMENT_SRC))
 RENDERING_SRCS	= $(addprefix $(SRC_DIR)/rendering/, $(RENDERING_SRC))
 PARSING_SRCS	= $(addprefix $(SRC_DIR)/parsing/, $(PARSING_SRC))
+MINIMAP_SRCS	= $(addprefix $(SRC_DIR)/minimap/, $(MINIMAP_SRC))
 
-SRCS		= $(MAIN_SRCS) $(MOVEMENT_SRCS) $(RENDERING_SRCS) $(PARSING_SRCS)
+SRCS		= $(MAIN_SRCS) $(MOVEMENT_SRCS) $(RENDERING_SRCS) $(PARSING_SRCS) $(MINIMAP_SRCS)
 
 # Libft source files
 LIBFT_SRC	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
