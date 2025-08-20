@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 19:40:43 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 01:30:25 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 17:45:17 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,16 @@ static void	init_map_camera(t_cub3d *cub)
 
 void	init_cub3d(t_cub3d *cub)
 {
+	int	i;
+
+	i = 0;
+	while (i < SPRITE_ANIMATION_FRAMES)
+	{
+		cub->txt.sprite_paths[i] = NULL;
+		i++;
+	}
+	cub->door_mgr.doors = NULL;
+	cub->sprite_mgr.sprites = NULL;
 	init_keys(cub);
 	init_graphics(cub);
 	init_textures(cub);
