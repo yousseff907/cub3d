@@ -6,16 +6,16 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:54:55 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 14:51:23 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 21:33:59 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
-
+;
 int	key_press(int keycode, t_cub3d *cub)
 {
 	if (keycode == ESC_KEY)
-		exit(0);
+		cleanup_exit(cub, "", 0);
 	if (keycode == W_KEY)
 		cub->keys.w_pressed = 1;
 	if (keycode == S_KEY)
@@ -59,6 +59,6 @@ int	game_loop(t_cub3d *cub)
 int	close_window(t_cub3d *cub)
 {
 	cleanup_cub3d(cub);
-	exit(1);
+	exit(0);
 	return (0);
 }
