@@ -23,7 +23,7 @@ PARSING_SRC	= main_parsing.c config_parsing_validation.c map_parsing.c \
 MINIMAP_SRC = minimap.c draw_minimap.c minimap_border.c minimap_direction.c \
 			minimap_player.c minimap_utils.c
 
-SPRITE_SRC = sprite_init.c sprite_update.c sprite_render.c sprite.c
+SPRITE_SRC = sprite_init.c sprite_update.c sprite_render.c sprite.c line_of_sight.c \
 
 # Create full paths for source files
 MAIN_SRCS	= $(addprefix $(SRC_DIR)/main/, $(MAIN_SRC))

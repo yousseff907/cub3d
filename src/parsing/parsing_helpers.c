@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:21:16 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/15 00:44:40 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 10:06:31 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int	is_config_line(char *line)
 			|| ft_strncmp(line + i, "WE ", 3) == 0
 			|| ft_strncmp(line + i, "EA ", 3) == 0
 			|| ft_strncmp(line + i, "F ", 2) == 0
-			|| ft_strncmp(line + i, "C ", 2) == 0)
+			|| ft_strncmp(line + i, "C ", 2) == 0
+			|| ft_strncmp(line + i, "SP ", 3) == 0)
 			return (1);
 		break;
 	}

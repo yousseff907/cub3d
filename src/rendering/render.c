@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 18:58:53 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 02:15:42 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 10:11:02 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	render_frame(t_cub3d *cub)
 			draw_wall_column(&cub->gfx, x, &ray, &cub->txt);
 		x++;
 	}
+	render_sprites(cub);
 	draw_minimap(cub);
 	draw_player_on_minimap(cub);
 	draw_player_direction(cub);

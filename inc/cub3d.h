@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 09:51:17 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 10:18:25 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -344,6 +344,7 @@ void	calculate_sprite_distances(t_cub3d *cub);
 void	sort_sprites_by_distance(t_cub3d *cub);
 void	store_sprite_textures(t_cub3d *cub, char *sprite_str);
 void	render_single_sprite(t_cub3d *cub, t_sprite *sprite);
+int		has_line_of_sight(t_cub3d *cub, double sprite_x, double sprite_y);
 
 // Minimap system
 
