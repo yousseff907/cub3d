@@ -6,7 +6,7 @@
 /*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 10:18:25 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 10:22:16 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@
 # define DOOR_PASSABLE_THRESHOLD 0.9
 
 # define SPRITE_ANIMATION_FRAMES 4
-# define SPRITE_ANIMATION_SPEED 8
+# define SPRITE_ANIMATION_SPEED 100
 
 typedef struct s_minimap
 {
