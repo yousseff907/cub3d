@@ -6,7 +6,7 @@ EA ./textures/stone.xpm
 F 64,64,64
 C 135,206,250
 
-SP ./textures/sans.xpm ./textures/frisk.xpm ./textures/undyne.xpm ./textures/gaster.xpm
+SP ./textures/sprite_1.xpm ./textures/sprite_2.xpm ./textures/sprite_3.xpm ./textures/sprite_4.xpm
 
 11111111111111111111111111111111
 10000000001100000000000000000001

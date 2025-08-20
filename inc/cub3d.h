@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
+/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:04:55 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 10:22:16 by odana            ###   ########.fr       */
+/*   Updated: 2025/08/20 15:57:25 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@
 # define DOOR_PASSABLE_THRESHOLD 0.9
 
 # define SPRITE_ANIMATION_FRAMES 4
-# define SPRITE_ANIMATION_SPEED 100
+# define SPRITE_ANIMATION_SPEED 35
 
 typedef struct s_minimap
 {
