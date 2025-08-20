@@ -6,7 +6,7 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:17:14 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 22:08:54 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 22:51:49 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_position
 
 int			is_cub_file(char *file_name);
 void		validate_input(int argc, char *argv[], t_cub3d *cub);
+int			validate_texture_file(char *path);
 int			is_valid_char(char c);
 
 int			rows_count(char *file_name);
@@ -44,7 +45,7 @@ void		file_content_identification(int argc, char **argv, t_cub3d *cub);
 void		store_config_line(char **parsed_file, char *line, t_cub3d *cub);
 int			validate_complete_config(t_cub3d *cub);
 char		*store_texture_path(char *trimmed, char **parsed_file,
-			char *path_str, t_cub3d *cub);
+				char *path_str, t_cub3d *cub);
 
 void		store_map(char **parsed_file, int start_index, t_cub3d *cub);
 char		**duplicate_map(t_cub3d *cub);

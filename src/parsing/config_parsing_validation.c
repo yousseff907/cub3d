@@ -6,13 +6,13 @@
 /*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:59:17 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 22:07:40 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/20 22:43:23 by yitani           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/cub3d.h"
 
-static int	validate_texture_file(char *path)
+int	validate_texture_file(char *path)
 {
 	int		fd;
 	char	*extension;
