@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 23:20:04 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 16:32:41 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/21 21:31:56 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 void	nothing(void)
 {
 }
+
+// omar 7otta line 35 bel eval
+	// mlx_mouse_hide(cub->gfx.mlx_ptr, cub->gfx.win_ptr);
 
 int	main(int argc, char **argv)
 {
@@ -33,7 +36,6 @@ int	main(int argc, char **argv)
 	create_image(cub);
 	load_textures(cub);
 	render_frame(cub);
-	mlx_mouse_hide(cub->gfx.mlx_ptr, cub->gfx.win_ptr);
 	mlx_hook(cub->gfx.win_ptr, 2, 1L << 0, key_press, cub);
 	mlx_hook(cub->gfx.win_ptr, 3, 1L << 1, key_release, cub);
 	mlx_hook(cub->gfx.win_ptr, 17, 1L << 17, close_window, cub);

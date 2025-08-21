@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keyhook.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 16:54:55 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 22:04:48 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/21 20:47:06 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int	key_press(int keycode, t_cub3d *cub)
 {
 	if (keycode == ESC_KEY)
-		cleanup_exit(cub, "", 0);
+	{
+		cleanup_cub3d(cub);
+		exit(0);
+	}
 	if (keycode == W_KEY)
 		cub->keys.w_pressed = 1;
 	if (keycode == S_KEY)

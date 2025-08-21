@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   line_of_sight.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 10:13:34 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 16:12:13 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/21 21:07:02 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 static int	is_wall_cell(t_cub3d *cub, int x, int y)
 {
+	t_door	*door;
+
 	if (y < 0 || y >= cub->map.height || x < 0)
 		return (1);
 	if (x >= (int)ft_strlen(cub->map.grid[y]))
 		return (1);
 	if (cub->map.grid[y][x] == '1' || is_space(cub->map.grid[y][x]))
 		return (1);
+	if (cub->map.grid[y][x] == 'D')
+	{
+		door = find_door(cub, x, y);
+		if (door && door->open_progress < DOOR_PASSABLE_THRESHOLD)
+			return (1);
+	}
 	return (0);
 }
 

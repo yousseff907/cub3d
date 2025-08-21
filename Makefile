@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: yitani <yitani@student.42.fr>              +#+  +:+       +#+         #
+#    By: odana <odana@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/08/20 14:21:54 by yitani            #+#    #+#              #
-#    Updated: 2025/08/20 16:17:14 by yitani           ###   ########.fr        #
+#    Updated: 2025/08/21 21:41:00 by odana            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,6 @@ MINIMAP_SRC = minimap.c draw_minimap.c minimap_border.c minimap_direction.c \
 
 SPRITE_SRC = sprite_init.c sprite_update.c sprite_render.c sprite.c line_of_sight.c \
 
-# Create full paths for source files
 MAIN_SRCS	= $(addprefix $(SRC_DIR)/main/, $(MAIN_SRC))
 MOVEMENT_SRCS	= $(addprefix $(SRC_DIR)/movement/, $(MOVEMENT_SRC))
 RENDERING_SRCS	= $(addprefix $(SRC_DIR)/rendering/, $(RENDERING_SRC))
@@ -45,7 +44,6 @@ SPRITE_SRCS		= $(addprefix $(SRC_DIR)/sprite/, $(SPRITE_SRC))
 
 SRCS		= $(MAIN_SRCS) $(MOVEMENT_SRCS) $(RENDERING_SRCS) $(PARSING_SRCS) $(MINIMAP_SRCS) $(SPRITE_SRCS)
 
-# Libft source files
 LIBFT_SRC	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 		  ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c \
 		  ft_memcmp.c ft_memcpy.c ft_memmove.c ft_memset.c ft_putchar_fd.c \
@@ -59,22 +57,18 @@ LIBFT_SRC	= ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 
 LIBFT_SRCS	= $(addprefix $(LIBFT_DIR)/, $(LIBFT_SRC))
 
-# Object files
 OBJS		= $(SRCS:.c=.o)
 LIBFT_OBJS	= $(LIBFT_SRCS:.c=.o)
 
-# Compiler and flags
-CC		= cc
+CC			= cc
 CFLAGS		= -Wall -Wextra -Werror -g
 INCLUDES	= -I$(INC_DIR) -I$(LIBFT_DIR) -I$(MLX_DIR)
 LIBS		= -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
-# Colors for output
 GREEN		= \033[0;32m
 BLUE		= \033[0;34m
 RESET		= \033[0m
 
-# Rules
 all: $(MLX_DIR)/libmlx.a $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT_OBJS)

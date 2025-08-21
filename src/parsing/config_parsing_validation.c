@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config_parsing_validation.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 18:59:17 by yitani            #+#    #+#             */
-/*   Updated: 2025/08/20 22:43:23 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/21 21:33:22 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*store_texture_path(char *trimmed, char **parsed_file,
 		ft_putendl_fd(trimmed_path, 2);
 		free(trimmed_path);
 		free_split(parsed_file);
-		cleanup_exit(cub, "", 1);
+		cleanup_exit(cub, "Error: Failed to load textures", 1);
 	}
 	return (trimmed_path);
 }
@@ -104,7 +104,8 @@ void	store_config_line(char **p, char *line, t_cub3d *cub)
 	else if (ft_strncmp(trimmed, "SP ", 3) == 0)
 		store_sprite_textures(trimmed, p, cub, trimmed + 3);
 	else
-		return (free(trimmed), cleanup_exit(cub, "Error: Invalid line", 1));
+		return (free_split(p), free(trimmed),
+			cleanup_exit(cub, "Error: Invalid line", 1));
 	free(trimmed);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_sprite.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yitani <yitani@student.42.fr>              +#+  +:+       +#+        */
+/*   By: odana <odana@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 09:40:15 by odana             #+#    #+#             */
-/*   Updated: 2025/08/20 22:50:53 by yitani           ###   ########.fr       */
+/*   Updated: 2025/08/21 20:47:40 by odana            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char	*store_sprite_texture_path(char *path_str, t_cub3d *cub,
 		free(cleanup->trimmed_sprite);
 		free_split(cleanup->sprite_paths);
 		free_split(cleanup->parsed_file);
-		cleanup_exit(cub, "", 1);
+		cleanup_exit(cub, "Error: Failed to load textures", 1);
 	}
 	return (trimmed_path);
 }
